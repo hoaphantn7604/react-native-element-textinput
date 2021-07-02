@@ -1,0 +1,36 @@
+{
+  "name": "react-native-element-textinput",
+  "title": "React Native Element TextInput",
+  "version": "0.1.0",
+  "description": "A react-native TextInput component easy to customize for both iOS and Android.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoaphantn7604/react-native-element-textinput.git",
+    "baseUrl": "https://github.com/hoaphantn7604/react-native-element-textinput"
+  },
+  "keywords": [
+    "react-native",
+    "elements",
+    "components",
+    "input"
+  ],
+  "author": {
+    "name": "Hoa Phan",
+    "email": "hoaphantn7604@email.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": ">=16.8.1",
+    "react-native": ">=0.60.0-rc.0 <1.0.x"
+  },
+  "devDependencies": {
+    "react": "^16.9.0",
+    "react-native": "^0.61.5"
+  }
+}
