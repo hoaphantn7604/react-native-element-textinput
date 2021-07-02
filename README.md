@@ -25,6 +25,7 @@ or
 | showIcon           | Boolean              | No        |                  |
 | iconStyle          | ImageStyle           | No        |                  |
 | numeric            | Boolean              | No        |                  |
+| focusColor         | String               | No        |                  |
 | fontFamily         | String               | No        |                  |
 | renderLeftIcon     | () => JSX.Element    | No        |                  |
 | renderRightIcon    | () => JSX.Element    | No        |                  |
@@ -48,6 +49,7 @@ or
                         onChangeText={text => {
                             console.log(text);
                         }}
+                        focusColor="red"
                         textError="Please enter"
                     />
                     <TextInput

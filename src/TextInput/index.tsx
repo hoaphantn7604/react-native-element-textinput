@@ -32,12 +32,16 @@ const TextInputComponent: CTextInput = props => {
     showIcon,
     numeric,
     textError,
-    onChangeText = (value: string) => {},
+    focusColor,
+    onFocus,
+    onBlur,
+    onChangeText = (value: string) => { },
     renderLeftIcon,
     renderRightIcon,
   } = props;
 
   const [text, setText] = useState<string>('');
+  const [isFocus, setIsFocus] = useState<boolean>(false);
   const [textEntry, setTextEntry] = useState<boolean>(
     secureTextEntry ? true : false,
   );
@@ -113,11 +117,30 @@ const TextInputComponent: CTextInput = props => {
     }
   };
 
+  const onFocusCustom = (e) => {
+    setIsFocus(true);
+    if (onFocus) {
+      onFocus(e);
+    }
+  }
+
+  const ononBlurCustom = (e) => {
+    setIsFocus(false);
+    if (onBlur) {
+      onBlur(e);
+    }
+  }
+
   return (
     <View>
       <View style={[style]}>
         {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-        <View style={[styles.textInput, containerStyle]}>
+        <View 
+        style={[
+          styles.textInput, 
+          containerStyle, 
+          isFocus && focusColor && {borderBottomColor: focusColor, borderTopColor: focusColor, borderLeftColor: focusColor, borderRightColor: focusColor}]
+        }>
           {renderLeftIcon?.()}
           <TextInput
             {...props}
@@ -127,6 +150,8 @@ const TextInputComponent: CTextInput = props => {
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
             onChangeText={onChange}
+            onFocus={onFocusCustom}
+            onBlur={ononBlurCustom}
           />
           {_renderRightIcon()}
         </View>

@@ -15,6 +15,7 @@ const TextInputScreen = _props => {
           onChangeText={text => {
             console.log(text);
           }}
+          focusColor="red"
           textError="Please enter"
         />
 

@@ -1,6 +1,8 @@
 import {
   ImageStyle,
+  NativeSyntheticEvent,
   StyleProp,
+  TextInputFocusEventData,
   TextInputProps,
   TextStyle,
   ViewStyle,
@@ -18,6 +20,9 @@ interface Props extends TextInputProps {
   label?: string;
   showIcon?: boolean;
   numeric?: boolean;
+  focusColor?: string;
+  onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   renderRightIcon?: () => JSX.Element | null | undefined;
   renderLeftIcon?: () => JSX.Element | null | undefined;
 }
