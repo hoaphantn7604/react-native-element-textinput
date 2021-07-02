@@ -10,6 +10,9 @@ or
     yarn add react-native-element-textinput
 ```
 
+### Demo
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.png)
+
 #### Props
 | Props              | Params               | isRequire | default          |
 | ------------------ | -------------------- | --------- | ---------------- |
@@ -37,15 +40,26 @@ or
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
                     <TextInput
-                    style={{marginTop: 20}}
-                    containerStyle={styles.textinput}
-                    label="Normal"
-                    placeholder="Placeholder"
-                    placeholderTextColor="gray"
-                    onChangeText={text => {
-                        console.log(text);
-                    }}
-                    textError="Please enter"
+                        style={{marginTop: 20}}
+                        containerStyle={styles.textinput}
+                        label="Normal"
+                        placeholder="Placeholder"
+                        placeholderTextColor="gray"
+                        onChangeText={text => {
+                            console.log(text);
+                        }}
+                        textError="Please enter"
+                    />
+                    <TextInput
+                        style={{marginTop: 20}}
+                        containerStyle={styles.textinput}
+                        label="Normal"
+                        placeholder="Placeholder"
+                        placeholderTextColor="gray"
+                        secureTextEntry
+                        onChangeText={text => {
+                            console.log(text);
+                        }}
                     />
                 </View>
             </SafeAreaView>

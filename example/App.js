@@ -17,6 +17,18 @@ const TextInputScreen = _props => {
           }}
           textError="Please enter"
         />
+
+        <TextInput
+          style={{marginTop: 20}}
+          containerStyle={styles.textinput}
+          label="Normal"
+          placeholder="Placeholder"
+          placeholderTextColor="gray"
+          secureTextEntry
+          onChangeText={text => {
+            console.log(text);
+          }}
+        />
       </View>
     </SafeAreaView>
   );

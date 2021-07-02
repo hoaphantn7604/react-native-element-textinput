@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Image, TextInput, TouchableOpacity, View, Text } from 'react-native';
+import { Image, TextInput, TouchableOpacity, View, Text, Keyboard } from 'react-native';
 import { CTextInput } from './type';
 import { styles } from './styles';
 
