@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   textInput: {
     flexDirection: 'row',
     alignItems: 'center',
-    height: 40,
+    minHeight: 40,
   },
   input: {
     fontSize: 16,
