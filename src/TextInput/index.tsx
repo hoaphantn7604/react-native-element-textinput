@@ -138,9 +138,11 @@ const TextInputComponent: CTextInput = props => {
   }
 
   const onRemoveItem = (index: number) => {
-    hashtag?.splice(index, 1);
-    onChangeHashtag(hashtag);
-    setReload(Math.random());
+    if (props.editable) {
+      hashtag?.splice(index, 1);
+      onChangeHashtag(hashtag);
+      setReload(Math.random());
+    }
   }
 
   useEffect(() => {

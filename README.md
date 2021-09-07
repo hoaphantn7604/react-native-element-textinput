@@ -36,11 +36,12 @@ or
 
 ## Usage
 ```javascript
-    import React from 'react';
+    import React, {useState} from 'react';
     import {StyleSheet, View, SafeAreaView} from 'react-native';
     import {TextInput} from 'react-native-element-textinput';
 
     const TextInputScreen = _props => {
+        const [hashtag, setHashtag] = useState([]);
         return (
             <SafeAreaView style={{flex: 1}}>
                 <View style={styles.container}>
@@ -66,6 +67,18 @@ or
                         onChangeText={text => {
                             console.log(text);
                         }}
+                    />
+
+                    <TextInput
+                        style={{marginTop: 20}}
+                        containerStyle={styles.textinput}
+                        hashtagValue={hashtag}
+                        onChangeHashtag={value => {
+                            setHashtag(value);
+                        }}
+                        label="Hashtag"
+                        placeholder="Enter hashtag..."
+                        placeholderTextColor="gray"
                     />
                 </View>
             </SafeAreaView>
