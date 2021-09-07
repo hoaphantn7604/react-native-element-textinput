@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Image, TextInput, TouchableOpacity, View, Text, Keyboard } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Image, TextInput, TouchableOpacity, View, Text, FlatList } from 'react-native';
 import { CTextInput } from './type';
 import { styles } from './styles';
 
@@ -33,15 +33,21 @@ const TextInputComponent: CTextInput = props => {
     numeric,
     textError,
     focusColor,
+    hashtagValue,
+    hashtagStyle,
+    hashtagTextStyle,
     onFocus,
     onBlur,
     onChangeText = (value: string) => { },
     renderLeftIcon,
     renderRightIcon,
+    onChangeHashtag = (value: string[]) => { }
   } = props;
 
   const [text, setText] = useState<string>('');
+  const [hashtag, setHashtag] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
+  const [reload, setReload] = useState(Math.random());
   const [textEntry, setTextEntry] = useState<boolean>(
     secureTextEntry ? true : false,
   );
@@ -54,7 +60,7 @@ const TextInputComponent: CTextInput = props => {
         setText(value);
       }
     }
-  }, []);
+  }, [value]);
 
   const formatCurrency = (num: string) => {
     const values = num.toString().replace(/\D/g, '');
@@ -131,16 +137,56 @@ const TextInputComponent: CTextInput = props => {
     }
   }
 
+  const onRemoveItem = (index: number) => {
+    hashtag?.splice(index, 1);
+    onChangeHashtag(hashtag);
+    setReload(Math.random());
+  }
+
+  useEffect(() => {
+    if (hashtagValue) {
+      setHashtag(hashtagValue);
+    }
+  }, [hashtagValue])
+
+  const onSubmitEdit = () => {
+    if (hashtag && text.length > 0) {
+      hashtag.push(text);
+      setText('');
+      setReload(Math.random());
+    }
+  }
+
+  const _renderItemSelected = () => {
+    if (hashtag && hashtag.length > 0) {
+      return (
+        <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+          {hashtag.map((e, index) => {
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[styles.selectedItem, hashtagStyle]}
+                onPress={() => { onRemoveItem(index) }}
+              >
+                <Text style={[{ fontSize: 12, color: 'gray' }, font()]}>{e}</Text>
+                <Text style={[styles.selectedTextItem, hashtagTextStyle]}>ⓧ</Text>
+              </TouchableOpacity>
+            )
+          })}
+        </View>)
+    }
+  };
+
   return (
     <View>
       <View style={[style]}>
         {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
-        <View 
-        style={[
-          styles.textInput, 
-          containerStyle, 
-          isFocus && focusColor && {borderBottomColor: focusColor, borderTopColor: focusColor, borderLeftColor: focusColor, borderRightColor: focusColor}]
-        }>
+        <View
+          style={[
+            styles.textInput,
+            containerStyle,
+            isFocus && focusColor && { borderBottomColor: focusColor, borderTopColor: focusColor, borderLeftColor: focusColor, borderRightColor: focusColor }]
+          }>
           {renderLeftIcon?.()}
           <TextInput
             {...props}
@@ -152,10 +198,12 @@ const TextInputComponent: CTextInput = props => {
             onChangeText={onChange}
             onFocus={onFocusCustom}
             onBlur={ononBlurCustom}
+            onSubmitEditing={onSubmitEdit}
           />
           {_renderRightIcon()}
         </View>
       </View>
+      {_renderItemSelected()}
       {textError && (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
       )}

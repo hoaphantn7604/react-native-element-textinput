@@ -27,6 +27,10 @@ or
 | numeric            | Boolean              | No        |                  |
 | focusColor         | String               | No        |                  |
 | fontFamily         | String               | No        |                  |
+| hashtagValue       | String[]             | No        |                  |
+| hashtagStyle       | ViewStyle            | No        |                  |
+| hashtagTextStyle   | TextStyle            | No        |                  |
+| onChangeHashtag    | (string[]) => void   | No        |                  |
 | renderLeftIcon     | () => JSX.Element    | No        |                  |
 | renderRightIcon    | () => JSX.Element    | No        |                  |
 

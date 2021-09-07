@@ -32,4 +32,20 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     marginTop: 10,
   },
+  selectedItem: {
+    height: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    paddingHorizontal: 8,
+    marginTop: 12,
+    marginRight: 8,
+    flexDirection: 'row'
+  },
+  selectedTextItem: {
+    marginLeft: 5, 
+    color: 'gray', 
+    fontSize: 16
+  },
 });
