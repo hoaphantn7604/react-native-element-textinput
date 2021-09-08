@@ -138,7 +138,7 @@ const TextInputComponent: CTextInput = props => {
   }
 
   const onRemoveItem = (index: number) => {
-    if (props.editable) {
+    if (props.editable === undefined || props.editable) {
       hashtag?.splice(index, 1);
       onChangeHashtag(hashtag);
       setReload(Math.random());
@@ -155,6 +155,7 @@ const TextInputComponent: CTextInput = props => {
     if (hashtag && text.length > 0) {
       hashtag.push(text);
       setText('');
+      onChangeHashtag(hashtag);
       setReload(Math.random());
     }
   }
