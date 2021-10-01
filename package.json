@@ -1,7 +1,7 @@
 {
   "name": "react-native-element-textinput",
   "title": "React Native Element TextInput",
-  "version": "0.1.7",
+  "version": "1.0.0",
   "description": "A react-native TextInput component easy to customize for both iOS and Android.",
   "main": "index.ts",
   "scripts": {
