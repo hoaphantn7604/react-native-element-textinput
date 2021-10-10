@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, TextInput, TouchableOpacity, View, Text, FlatList } from 'react-native';
-import { CTextInput } from './type';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
+import { CTextInput } from './type';
 
 const ic_eye = require('./icon/eye.png');
 const ic_uneye = require('./icon/uneye.png');
@@ -123,33 +123,35 @@ const TextInputComponent: CTextInput = props => {
     }
   };
 
-  const onFocusCustom = (e) => {
+  const onFocusCustom = (e: any) => {
     setIsFocus(true);
     if (onFocus) {
       onFocus(e);
     }
-  }
+  };
 
-  const ononBlurCustom = (e) => {
+  const ononBlurCustom = (e: any) => {
     setIsFocus(false);
     if (onBlur) {
       onBlur(e);
     }
-  }
+  };
 
   const onRemoveItem = (index: number) => {
-    if (props.editable === undefined || props.editable) {
-      hashtag?.splice(index, 1);
-      onChangeHashtag(hashtag);
-      setReload(Math.random());
+    if (hashtag) {
+      if (props.editable === undefined || props.editable) {
+        hashtag?.splice(index, 1);
+        onChangeHashtag(hashtag);
+        setReload(Math.random());
+      }
     }
-  }
+  };
 
   useEffect(() => {
     if (hashtagValue) {
       setHashtag(hashtagValue);
     }
-  }, [hashtagValue])
+  }, [hashtagValue]);
 
   const onSubmitEdit = () => {
     if (hashtag && text.length > 0) {
@@ -158,7 +160,7 @@ const TextInputComponent: CTextInput = props => {
       onChangeHashtag(hashtag);
       setReload(Math.random());
     }
-  }
+  };
 
   const _renderItemSelected = () => {
     if (hashtag && hashtag.length > 0) {
@@ -180,15 +182,28 @@ const TextInputComponent: CTextInput = props => {
     }
   };
 
+  const colorFocus = useMemo(() => {
+    if (isFocus && focusColor) {
+      return {
+        borderBottomColor: focusColor,
+        borderTopColor: focusColor,
+        borderLeftColor: focusColor,
+        borderRightColor: focusColor
+      };
+    } else {
+      return {};
+    }
+  }, [isFocus, focusColor]);
+
   return (
     <View>
-      <View style={[style]}>
+      <View style={[styles.container, style]}>
         {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
         <View
           style={[
             styles.textInput,
             containerStyle,
-            isFocus && focusColor && { borderBottomColor: focusColor, borderTopColor: focusColor, borderLeftColor: focusColor, borderRightColor: focusColor }]
+            colorFocus]
           }>
           {renderLeftIcon?.()}
           <TextInput
