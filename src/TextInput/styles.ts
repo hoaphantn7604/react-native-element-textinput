@@ -1,18 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {},
+  container: { 
+    alignItems: 'center',
+    height: 60
+  },
   textInput: {
+    flex:1,
     flexDirection: 'row',
     alignItems: 'center',
-    minHeight: 45,
   },
   input: {
     fontSize: 16,
-    flex: 1,
+    paddingHorizontal: 0,
+    flex:1,
   },
   label: {
-    marginBottom: 4,
     fontSize: 16,
   },
   row: {

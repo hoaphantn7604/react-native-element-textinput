@@ -19,10 +19,10 @@ const TextInputComponent: CTextInput = props => {
   const {
     fontFamily,
     style,
-    containerStyle,
     inputStyle,
     iconStyle,
     labelStyle,
+    placeholderStyle = {},
     textErrorStyle,
     value,
     label,
@@ -93,22 +93,27 @@ const TextInputComponent: CTextInput = props => {
       if (renderRightIcon) {
         return renderRightIcon();
       }
-      if (secureTextEntry) {
-        return (
-          <TouchableOpacity onPress={onChangeTextEntry}>
-            <Image
-              source={textEntry ? ic_eye : ic_uneye}
-              style={[styles.icon, iconStyle]}
-            />
-          </TouchableOpacity>
-        );
+      if (text.length > 0) {
+        if (secureTextEntry) {
+          return (
+            <TouchableOpacity onPress={onChangeTextEntry}>
+              <Image
+                source={textEntry ? ic_eye : ic_uneye}
+                style={[styles.icon, iconStyle]}
+              />
+            </TouchableOpacity>
+          );
+        } else {
+          return (
+            <TouchableOpacity onPress={() => onChange('')}>
+              <Image source={ic_close} style={[styles.icon, iconStyle]} />
+            </TouchableOpacity>
+          );
+        }
       } else {
-        return (
-          <TouchableOpacity onPress={() => onChange('')}>
-            <Image source={ic_close} style={[styles.icon, iconStyle]} />
-          </TouchableOpacity>
-        );
+        return null;
       }
+
     }
     return null;
   };
@@ -130,7 +135,7 @@ const TextInputComponent: CTextInput = props => {
     }
   };
 
-  const ononBlurCustom = (e: any) => {
+  const onBlurCustom = (e: any) => {
     setIsFocus(false);
     if (onBlur) {
       onBlur(e);
@@ -193,31 +198,46 @@ const TextInputComponent: CTextInput = props => {
     } else {
       return {};
     }
-  }, [isFocus, focusColor]);
+  }, [isFocus]);
+
+  const styleLable: any = useMemo(() => {
+    if (isFocus || text.length > 0 && label) {
+      return {
+        top:5,
+        ...labelStyle
+      };
+    } else {
+      return {
+        position: 'absolute',
+        ...placeholderStyle
+      }
+    }
+  }, [isFocus, text]);
 
   return (
     <View>
-      <View style={[styles.container, style]}>
-        {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
+      <View style={[styles.container, style, colorFocus]}>
         <View
           style={[
             styles.textInput,
-            containerStyle,
-            colorFocus]
+          ]
           }>
           {renderLeftIcon?.()}
-          <TextInput
-            {...props}
-            style={[styles.input, inputStyle, font()]}
-            secureTextEntry={textEntry}
-            value={text}
-            placeholder={placeholder}
-            placeholderTextColor={placeholderTextColor}
-            onChangeText={onChange}
-            onFocus={onFocusCustom}
-            onBlur={ononBlurCustom}
-            onSubmitEditing={onSubmitEdit}
-          />
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            {label && <Text style={[styles.label, styleLable]}>{label}</Text>}
+            <TextInput
+              {...props}
+              style={[styles.input, inputStyle, font()]}
+              secureTextEntry={textEntry}
+              value={text}
+              placeholder={isFocus || !label ? placeholder : ''}
+              placeholderTextColor={placeholderTextColor}
+              onChangeText={onChange}
+              onFocus={onFocusCustom}
+              onBlur={onBlurCustom}
+              onSubmitEditing={onSubmitEdit}
+            />
+          </View>
           {_renderRightIcon()}
         </View>
       </View>

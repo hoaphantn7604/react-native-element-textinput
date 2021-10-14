@@ -11,9 +11,9 @@ import {
 interface Props extends TextInputProps {
   fontFamily?: string;
   style?: StyleProp<ViewStyle>;
-  containerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
   labelStyle?: StyleProp<TextStyle>;
+  placeholderStyle?: StyleProp<TextStyle>;
   iconStyle?: StyleProp<ImageStyle>;
   textErrorStyle?: StyleProp<TextStyle>;
   hashtagStyle?: StyleProp<ViewStyle>;
