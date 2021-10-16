@@ -3,19 +3,15 @@ import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { CTextInput } from './type';
 
-const ic_eye = require('./icon/eye.png');
-const ic_uneye = require('./icon/uneye.png');
 const ic_close = require('./icon/close.png');
 
 const defaultProps = {
   style: {},
   value: '',
   showIcon: true,
-  currency: false,
-  numeric: false,
 };
 
-const TextInputComponent: CTextInput = props => {
+const HashtagInputComponent: CTextInput = props => {
   const {
     fontFamily,
     style,
@@ -24,16 +20,13 @@ const TextInputComponent: CTextInput = props => {
     labelStyle,
     placeholderStyle = {},
     textErrorStyle,
-    value,
     label,
-    secureTextEntry,
     placeholderTextColor = '#000',
     placeholder = '',
     showIcon,
-    numeric,
     textError,
     focusColor,
-    hashtagValue,
+    data=[],
     hashtagStyle,
     hashtagTextStyle,
     onFocus,
@@ -41,51 +34,17 @@ const TextInputComponent: CTextInput = props => {
     onChangeText = (value: string) => { },
     renderLeftIcon,
     renderRightIcon,
-    onChangeHashtag = (value: string[]) => { }
+    onChangeValue = (value: string[]) => { }
   } = props;
 
   const [text, setText] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [reload, setReload] = useState(Math.random());
-  const [textEntry, setTextEntry] = useState<boolean>(
-    secureTextEntry ? true : false,
-  );
-
-  useEffect(() => {
-    if (value) {
-      if (numeric) {
-        setText(formatCurrency(value));
-      } else {
-        setText(value);
-      }
-    }
-  }, [value]);
-
-  const formatCurrency = (num: string) => {
-    const values = num.toString().replace(/\D/g, '');
-    return values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-  };
-
-  const reConvertCurrency = (x: string) => {
-    let s;
-    s = x.split('.');
-    s = s.join('');
-    return s;
-  };
 
   const onChange = (text: string) => {
-    if (numeric) {
-      setText(formatCurrency(text));
-      onChangeText(reConvertCurrency(text));
-    } else {
-      setText(text);
-      onChangeText(text);
-    }
-  };
-
-  const onChangeTextEntry = () => {
-    setTextEntry(!textEntry);
+    setText(text);
+    onChangeText(text);
   };
 
   const _renderRightIcon = () => {
@@ -94,26 +53,14 @@ const TextInputComponent: CTextInput = props => {
         return renderRightIcon();
       }
       if (text.length > 0) {
-        if (secureTextEntry) {
-          return (
-            <TouchableOpacity onPress={onChangeTextEntry}>
-              <Image
-                source={textEntry ? ic_eye : ic_uneye}
-                style={[styles.icon, iconStyle]}
-              />
-            </TouchableOpacity>
-          );
-        } else {
-          return (
-            <TouchableOpacity onPress={() => onChange('')}>
-              <Image source={ic_close} style={[styles.icon, iconStyle]} />
-            </TouchableOpacity>
-          );
-        }
+        return (
+          <TouchableOpacity onPress={() => onChange('')}>
+            <Image source={ic_close} style={[styles.icon, iconStyle]} />
+          </TouchableOpacity>
+        );
       } else {
         return null;
       }
-
     }
     return null;
   };
@@ -146,23 +93,23 @@ const TextInputComponent: CTextInput = props => {
     if (hashtag) {
       if (props.editable === undefined || props.editable) {
         hashtag?.splice(index, 1);
-        onChangeHashtag(hashtag);
+        onChangeValue(hashtag);
         setReload(Math.random());
       }
     }
   };
 
   useEffect(() => {
-    if (hashtagValue) {
-      setHashtag(hashtagValue);
+    if (data) {
+      setHashtag(data);
     }
-  }, [hashtagValue]);
+  }, [data]);
 
   const onSubmitEdit = () => {
     if (hashtag && text.length > 0) {
       hashtag.push(text);
       setText('');
-      onChangeHashtag(hashtag);
+      onChangeValue(hashtag);
       setReload(Math.random());
     }
   };
@@ -203,7 +150,7 @@ const TextInputComponent: CTextInput = props => {
   const styleLable: any = useMemo(() => {
     if (isFocus || text.length > 0 && label) {
       return {
-        top:5,
+        top: 5,
         ...labelStyle
       };
     } else {
@@ -218,17 +165,13 @@ const TextInputComponent: CTextInput = props => {
     <View>
       <View style={[styles.container, style, colorFocus]}>
         <View
-          style={[
-            styles.textInput,
-          ]
-          }>
+          style={styles.textInput}>
           {renderLeftIcon?.()}
           <View style={{ flex: 1, justifyContent: 'center' }}>
             {label && <Text style={[styles.label, styleLable]}>{label}</Text>}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}
-              secureTextEntry={textEntry}
               value={text}
               placeholder={isFocus || !label ? placeholder : ''}
               placeholderTextColor={placeholderTextColor}
@@ -249,6 +192,6 @@ const TextInputComponent: CTextInput = props => {
   );
 };
 
-TextInputComponent.defaultProps = defaultProps;
+HashtagInputComponent.defaultProps = defaultProps;
 
-export default TextInputComponent;
+export default HashtagInputComponent;
