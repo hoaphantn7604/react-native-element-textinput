@@ -168,7 +168,7 @@ const HashtagInputComponent: CTextInput = props => {
           style={styles.textInput}>
           {renderLeftIcon?.()}
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label && <Text style={[styles.label, styleLable]}>{label}</Text>}
+            {label ? <Text style={[styles.label, styleLable]}>{label}</Text>: null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}
@@ -185,9 +185,9 @@ const HashtagInputComponent: CTextInput = props => {
         </View>
       </View>
       {_renderItemSelected()}
-      {textError && (
+      {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
-      )}
+      ): null}
     </View>
   );
 };

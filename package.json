@@ -17,7 +17,8 @@
     "elements",
     "components",
     "input",
-    "hashtag"
+    "hashtag",
+    "auto complete"
   ],
   "author": {
     "name": "Hoa Phan",

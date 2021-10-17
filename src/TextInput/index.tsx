@@ -203,7 +203,7 @@ const TextInputComponent: CTextInput = props => {
   const styleLable: any = useMemo(() => {
     if (isFocus || text.length > 0 && label) {
       return {
-        top:5,
+        top: 5,
         ...labelStyle
       };
     } else {
@@ -224,7 +224,7 @@ const TextInputComponent: CTextInput = props => {
           }>
           {renderLeftIcon?.()}
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label && <Text style={[styles.label, styleLable]}>{label}</Text>}
+            {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}
@@ -242,9 +242,9 @@ const TextInputComponent: CTextInput = props => {
         </View>
       </View>
       {_renderItemSelected()}
-      {textError && (
+      {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
-      )}
+      ) : null}
     </View>
   );
 };

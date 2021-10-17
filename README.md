@@ -15,12 +15,13 @@ or
 - [react-native-template-components](https://github.com/hoaphantn7604/react-native-template-components) A beautiful template for React Native.
 
 ### Demo
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.gif)
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.png)
 
 #### TextInput extends TextInputProps
 | Props              | Params               | isRequire | default          |
 | ------------------ | -------------------- | --------- | ---------------- |
-| containerStyle     | ViewStyle            | No        |                  |
+| style              | ViewStyle            | No        |                  |
 | label              | String               | No        |                  |
 | labelStyle         | TextStyle            | No        |                  |
 | inputStyle         | TextStyle            | No        |                  |
@@ -37,7 +38,7 @@ or
 #### HashtagInput extends TextInputProps
 | Props              | Params               | isRequire | default          |
 | ------------------ | -------------------- | --------- | ---------------- |
-| containerStyle     | ViewStyle            | No        |                  |
+| style              | ViewStyle            | No        |                  |
 | label              | String               | No        |                  |
 | labelStyle         | TextStyle            | No        |                  |
 | inputStyle         | TextStyle            | No        |                  |
@@ -57,8 +58,8 @@ or
 #### AutoComplete extends TextInputProps
 | Props              | Params                       | isRequire | default          |
 | ------------------ | ---------------------------- | --------- | ---------------- |
-| data               | String[]                     | No        |                  |
 | style              | ViewStyle                    | No        |                  |
+| data               | String[]                     | No        |                  |
 | label              | String                       | No        |                  |
 | labelStyle         | TextStyle                    | No        |                  |
 | inputStyle         | TextStyle                    | No        |                  |
