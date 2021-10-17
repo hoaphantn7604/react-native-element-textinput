@@ -29,8 +29,8 @@ or
 | Props              | Params               | isRequire | default                            |
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | style              | ViewStyle            | No        | Styling for container view         |
-| label              | String               | No        | Lable for textinput                |
-| labelStyle         | TextStyle            | No        | Styling for lable                  |
+| label              | String               | No        | Label for textinput                |
+| labelStyle         | TextStyle            | No        | Styling for label                  |
 | inputStyle         | TextStyle            | No        | Styling for input view             |
 | textError          | String               | No        | Text error                         |
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
@@ -46,8 +46,8 @@ or
 | Props              | Params               | isRequire | default                            |
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | style              | ViewStyle            | No        | Styling for container view         |
-| label              | String               | No        | Lable for textinput                |
-| labelStyle         | TextStyle            | No        | Styling for lable                  |
+| label              | String               | No        | Label for textinput                |
+| labelStyle         | TextStyle            | No        | Styling for label                  |
 | inputStyle         | TextStyle            | No        | Styling for input view             |
 | textError          | String               | No        | Text error                         |
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
@@ -60,8 +60,8 @@ or
 | renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
 | hashtagValue       | String[]             | No        | Data is a plain array              |
 | hashtagStyle       | ViewStyle            | No        | Styling for hashtash container view|
-| hashtagTextStyle   | TextStyle            | No        | Styling for text hashtag           |
-| onChangeHashtag    | (string[]) => void   | No        |                  |
+| hashtagTextStyle   | TextStyle            | No        | Styling for hashtag text           |
+| onChangeHashtag    | (string[]) => void   | No        | Callback that is called when submit value |
 
 
 #### AutoComplete extends TextInputProps
@@ -69,8 +69,8 @@ or
 | ------------------ | -----------------------------| --------- | ---------------------------------- |
 | data               | String[]                     | No        | Data is a plain array              |
 | style              | ViewStyle                    | No        | Styling for container view         |
-| label              | String                       | No        | Lable for textinput                |
-| labelStyle         | TextStyle                    | No        | Styling for lable                  |
+| label              | String                       | No        | Label for textinput                |
+| labelStyle         | TextStyle                    | No        | Styling for label                  |
 | inputStyle         | TextStyle                    | No        | Styling for input view             |
 | textError          | String                       | No        | Text error                         |
 | textErrorStyle     | TextStyle                    | No        | Styling for text error             |
