@@ -1,6 +1,13 @@
 ## react-native-element-textinput
 A react-native TextInput component easy to customize for both iOS and Android.
 
+## Features
+* TextInput, HashtagInput and AutoComplete in one package
+* Easy to use
+* Consistent look and feel on iOS and Android
+* Customizable font size, colors and animation duration
+* Implemented with typescript
+
 ## Getting started
 ```js
     npm install react-native-element-textinput --save
@@ -19,61 +26,62 @@ or
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.png)
 
 #### TextInput extends TextInputProps
-| Props              | Params               | isRequire | default          |
-| ------------------ | -------------------- | --------- | ---------------- |
-| style              | ViewStyle            | No        |                  |
-| label              | String               | No        |                  |
-| labelStyle         | TextStyle            | No        |                  |
-| inputStyle         | TextStyle            | No        |                  |
-| textError          | String               | No        |                  |
-| textErrorStyle     | TextStyle            | No        |                  |
-| showIcon           | Boolean              | No        |                  |
-| iconStyle          | ImageStyle           | No        |                  |
-| numeric            | Boolean              | No        |                  |
-| focusColor         | String               | No        |                  |
-| fontFamily         | String               | No        |                  |
-| renderLeftIcon     | () => JSX.Element    | No        |                  |
-| renderRightIcon    | () => JSX.Element    | No        |                  |
+| Props              | Params               | isRequire | default                            |
+| ------------------ | -------------------- | --------- | ---------------------------------- |
+| style              | ViewStyle            | No        | Styling for container view         |
+| label              | String               | No        | Lable for textinput                |
+| labelStyle         | TextStyle            | No        | Styling for lable                  |
+| inputStyle         | TextStyle            | No        | Styling for input view             |
+| textError          | String               | No        | Text error                         |
+| textErrorStyle     | TextStyle            | No        | Styling for text error             |
+| showIcon           | Boolean              | No        | Show or hide icon clear text       |
+| iconStyle          | ImageStyle           | No        | Styling for icon clear text        |
+| numeric            | Boolean              | No        | Input value is numeric             |
+| focusColor         | String               | No        | Color when focus to textinput      |
+| fontFamily         | String               | No        | Customize font style               |
+| renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
+| renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
 
 #### HashtagInput extends TextInputProps
-| Props              | Params               | isRequire | default          |
-| ------------------ | -------------------- | --------- | ---------------- |
-| style              | ViewStyle            | No        |                  |
-| label              | String               | No        |                  |
-| labelStyle         | TextStyle            | No        |                  |
-| inputStyle         | TextStyle            | No        |                  |
-| textError          | String               | No        |                  |
-| textErrorStyle     | TextStyle            | No        |                  |
-| showIcon           | Boolean              | No        |                  |
-| iconStyle          | ImageStyle           | No        |                  |
-| focusColor         | String               | No        |                  |
-| fontFamily         | String               | No        |                  |
-| hashtagValue       | String[]             | No        |                  |
-| hashtagStyle       | ViewStyle            | No        |                  |
-| hashtagTextStyle   | TextStyle            | No        |                  |
+| Props              | Params               | isRequire | default                            |
+| ------------------ | -------------------- | --------- | ---------------------------------- |
+| style              | ViewStyle            | No        | Styling for container view         |
+| label              | String               | No        | Lable for textinput                |
+| labelStyle         | TextStyle            | No        | Styling for lable                  |
+| inputStyle         | TextStyle            | No        | Styling for input view             |
+| textError          | String               | No        | Text error                         |
+| textErrorStyle     | TextStyle            | No        | Styling for text error             |
+| showIcon           | Boolean              | No        | Show or hide icon clear text       |
+| iconStyle          | ImageStyle           | No        | Styling for icon clear text        |
+| numeric            | Boolean              | No        | Input value is numeric             |
+| focusColor         | String               | No        | Color when focus to textinput      |
+| fontFamily         | String               | No        | Customize font style               |
+| renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
+| renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
+| hashtagValue       | String[]             | No        | Data is a plain array              |
+| hashtagStyle       | ViewStyle            | No        | Styling for hashtash container view|
+| hashtagTextStyle   | TextStyle            | No        | Styling for text hashtag           |
 | onChangeHashtag    | (string[]) => void   | No        |                  |
-| renderLeftIcon     | () => JSX.Element    | No        |                  |
-| renderRightIcon    | () => JSX.Element    | No        |                  |
+
 
 #### AutoComplete extends TextInputProps
-| Props              | Params                       | isRequire | default          |
-| ------------------ | ---------------------------- | --------- | ---------------- |
-| style              | ViewStyle                    | No        |                  |
-| data               | String[]                     | No        |                  |
-| label              | String                       | No        |                  |
-| labelStyle         | TextStyle                    | No        |                  |
-| inputStyle         | TextStyle                    | No        |                  |
-| textError          | String                       | No        |                  |
-| textErrorStyle     | TextStyle                    | No        |                  |
-| showIcon           | Boolean                      | No        |                  |
-| iconStyle          | ImageStyle                   | No        |                  |
-| numeric            | Boolean                      | No        |                  |
-| focusColor         | String                       | No        |                  |
-| fontFamily         | String                       | No        |                  |
-| hashtagValue       | String[]                     | No        |                  |
-| renderLeftIcon     | () => JSX.Element            | No        |                  |
-| renderRightIcon    | () => JSX.Element            | No        |                  |
-| renderItem         | (item:string) => JSX.Element | No        |                  |
+| Props              | Params                       | isRequire | default                            |
+| ------------------ | -----------------------------| --------- | ---------------------------------- |
+| data               | String[]                     | No        | Data is a plain array              |
+| style              | ViewStyle                    | No        | Styling for container view         |
+| label              | String                       | No        | Lable for textinput                |
+| labelStyle         | TextStyle                    | No        | Styling for lable                  |
+| inputStyle         | TextStyle                    | No        | Styling for input view             |
+| textError          | String                       | No        | Text error                         |
+| textErrorStyle     | TextStyle                    | No        | Styling for text error             |
+| showIcon           | Boolean                      | No        | Show or hide icon clear text       |
+| iconStyle          | ImageStyle                   | No        | Styling for icon clear text        |
+| numeric            | Boolean                      | No        | Input value is numeric             |
+| focusColor         | String                       | No        | Color when focus to textinput      |
+| fontFamily         | String                       | No        | Customize font style               |
+| renderLeftIcon     | () => JSX.Element            | No        | Customize left icon for textinput  |
+| renderRightIcon    | () => JSX.Element            | No        | Customize right icon for textinput |
+| renderItem         | (item:string) => JSX.Element | No        | Takes an item from data and renders it into the list |
 
 ## Usage
 ```javascript
