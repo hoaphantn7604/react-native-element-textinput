@@ -26,7 +26,7 @@ const HashtagInputComponent: CTextInput = props => {
     showIcon,
     textError,
     focusColor,
-    data=[],
+    data = [],
     hashtagStyle,
     hashtagTextStyle,
     onFocus,
@@ -125,8 +125,8 @@ const HashtagInputComponent: CTextInput = props => {
                 style={[styles.selectedItem, hashtagStyle]}
                 onPress={() => { onRemoveItem(index) }}
               >
-                <Text style={[{ fontSize: 12, color: 'gray' }, font()]}>{e}</Text>
-                <Text style={[styles.selectedTextItem, hashtagTextStyle]}>ⓧ</Text>
+                <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>{e}</Text>
+                <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>ⓧ</Text>
               </TouchableOpacity>
             )
           })}
@@ -168,7 +168,7 @@ const HashtagInputComponent: CTextInput = props => {
           style={styles.textInput}>
           {renderLeftIcon?.()}
           <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label ? <Text style={[styles.label, styleLable]}>{label}</Text>: null}
+            {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}
@@ -187,7 +187,7 @@ const HashtagInputComponent: CTextInput = props => {
       {_renderItemSelected()}
       {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
-      ): null}
+      ) : null}
     </View>
   );
 };

@@ -31,11 +31,8 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
   selectedItem: {
-    height: 30,
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0.5,
-    borderColor: 'gray',
     paddingHorizontal: 8,
     marginTop: 12,
     marginRight: 8,

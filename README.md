@@ -83,157 +83,276 @@ or
 | renderRightIcon    | () => JSX.Element            | No        | Customize right icon for textinput |
 | renderItem         | (item:string) => JSX.Element | No        | Takes an item from data and renders it into the list |
 
-## Usage
-```javascript
-import React, {useState} from 'react';
-import {StyleSheet, View, SafeAreaView} from 'react-native';
-import {
-  TextInput,
-  HashtagInput,
-  AutoComplete,
-} from 'react-native-element-textinput';
 
-const TextInputScreen = _props => {
-  const [value1, setValue1] = useState('');
-  const [value2, setValue2] = useState('');
-  const [value3, setValue3] = useState('');
-  const [hashtag, setHashtag] = useState([]);
+### Example 1
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example1.png)
+```js
+  import React, { useState } from 'react';
+  import { StyleSheet, View } from 'react-native';
+  import { TextInput } from 'react-native-element-textinput';
 
-  return (
-    <SafeAreaView style={{flex: 1}}>
+  const TextInputComponent = props => {
+    const [value, setValue] = useState('');
+
+    return (
       <View style={styles.container}>
         <TextInput
-          value={value1}
+          value={value}
           style={styles.input}
           inputStyle={styles.inputStyle}
           labelStyle={styles.labelStyle}
+          placeholderStyle={styles.placeholderStyle}
           textErrorStyle={styles.textErrorStyle}
-          label="Normal"
+          label="Username"
           placeholder="Placeholder"
           placeholderTextColor="gray"
           onChangeText={text => {
-            setValue1(text);
+            setValue(text);
           }}
-          focusColor="red"
-          textError={value1.length === 0 ? 'Please enter' : ''}
         />
+      </View>
+    );
+  };
 
+  export default TextInputComponent;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 20,
+    },
+    input: {
+      marginTop: 20,
+      height: 55,
+      paddingHorizontal: 16,
+      borderRadius: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+    inputStyle: { fontSize: 16 },
+    labelStyle: { fontSize: 14 },
+    placeholderStyle: { fontSize: 16 },
+    textErrorStyle: { fontSize: 16 },
+  });
+```
+
+### Example 2
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example2.png)
+```js
+  import React, { useState } from 'react';
+  import { StyleSheet, View } from 'react-native';
+  import { TextInput } from 'react-native-element-textinput';
+
+  const TextInputComponent = props => {
+    const [value, setValue] = useState('');
+
+    return (
+      <View style={styles.container}>
         <TextInput
-          value={value2}
-          style={styles.input1}
+          value={value}
+          style={styles.input}
           inputStyle={styles.inputStyle}
           labelStyle={styles.labelStyle}
-          textErrorStyle={styles.textErrorStyle}
-          placeholder="Placeholder"
-          placeholderTextColor="gray"
-          onChangeText={text => {
-            setValue2(text);
-          }}
-          focusColor="red"
-          textError={value2.length === 0 ? 'Please enter' : ''}
-        />
-
-        <TextInput
-          value={value3}
-          style={styles.input2}
-          inputStyle={styles.inputStyle}
-          labelStyle={styles.labelStyle}
+          placeholderStyle={styles.placeholderStyle}
           textErrorStyle={styles.textErrorStyle}
           label="Password"
           placeholder="Placeholder"
           placeholderTextColor="gray"
           secureTextEntry
-          focusColor="red"
           onChangeText={text => {
-            setValue3(text);
+            setValue(text);
           }}
-        />
-
-        <HashtagInput
-          style={styles.input3}
-          inputStyle={styles.inputStyle}
-          labelStyle={styles.labelStyle}
-          textErrorStyle={styles.textErrorStyle}
-          data={hashtag}
-          onChangeValue={e => {
-            setHashtag(e);
-          }}
-          placeholder="Hashtag..."
-          autoCorrect={false}
-          placeholderTextColor="gray"
-          focusColor="red"
-        />
-
-        <AutoComplete
-          style={styles.input3}
-          inputStyle={styles.inputStyle}
-          labelStyle={styles.labelStyle}
-          textErrorStyle={styles.textErrorStyle}
-          data={['hello', 'how are you', 'complete']}
-          placeholder="AutoComplete..."
-          autoCorrect={false}
-          placeholderTextColor="gray"
-          focusColor="red"
-          onChangeText={e => {}}
         />
       </View>
-    </SafeAreaView>
-  );
-};
+    );
+  };
 
-export default TextInputScreen;
+  export default TextInputComponent;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 20,
-  },
-  input: {
-    marginTop: 20,
-    borderBottomWidth: 0.3,
-    height: 60,
-  },
-  input1: {
-    marginTop: 20,
-    borderWidth: 0.3,
-    height: 60,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-  },
-  input2: {
-    marginTop: 20,
-    height: 60,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 20,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
-
-    elevation: 2,
-  },
-  input3: {
-    marginTop: 20,
-    height: 60,
-    paddingHorizontal: 8,
-    borderRadius: 8,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
+    input: {
+      marginTop: 20,
+      height: 55,
+      paddingHorizontal: 16,
+      borderRadius: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
     },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
+    inputStyle: { fontSize: 16 },
+    labelStyle: { fontSize: 14 },
+    placeholderStyle: { fontSize: 16 },
+    textErrorStyle: { fontSize: 16 },
+  });
+```
 
-    elevation: 2,
-  },
-  inputStyle: {fontSize: 16},
-  labelStyle: {fontSize: 14},
-  textErrorStyle: {fontSize: 16},
-});
+### Example 3
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example3.png)
+```js
+  import React, { useState } from 'react';
+  import { StyleSheet, View } from 'react-native';
+  import { HashtagInput } from 'react-native-element-textinput';
+
+  const TextInputComponent = props => {
+    const [value, setValue] = useState<string[]>([]);
+
+    return (
+      <View style={styles.container}>
+        <HashtagInput
+          data={value}
+          style={styles.input}
+          inputStyle={styles.inputStyle}
+          labelStyle={styles.labelStyle}
+          placeholderStyle={styles.placeholderStyle}
+          textErrorStyle={styles.textErrorStyle}
+          hashtagStyle={styles.hashtagStyle}
+          hashtagTextStyle={styles.hashtagTextStyle}
+          placeholder="Hashtag..."
+          placeholderTextColor="gray"
+          onChangeValue={value => {
+            setValue(value);
+          }}
+        />
+      </View>
+    );
+  };
+
+  export default TextInputComponent;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 20,
+    },
+    input: {
+      marginTop: 20,
+      height: 55,
+      paddingHorizontal: 16,
+      borderRadius: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+    inputStyle: { fontSize: 16 },
+    labelStyle: { fontSize: 14 },
+    placeholderStyle: { fontSize: 16 },
+    textErrorStyle: { fontSize: 16 },
+    hashtagStyle: {
+      borderWidth: 0,
+      borderRadius: 16,
+      padding: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+    hashtagTextStyle: {
+      fontSize: 16,
+    },
+  });
+```
+
+### Example 4
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example4.png)
+```js
+  import React, { useState } from 'react';
+  import { StyleSheet, View } from 'react-native';
+  import { AutoComplete } from 'react-native-element-textinput';
+
+  const TextInputComponent = props => {
+    const [value, setValue] = useState('');
+
+    return (
+      <View style={styles.container}>
+        <AutoComplete
+          value={value}
+          data={['hello', 'how are you', 'complete']}
+          style={styles.input}
+          inputStyle={styles.inputStyle}
+          labelStyle={styles.labelStyle}
+          placeholderStyle={styles.placeholderStyle}
+          textErrorStyle={styles.textErrorStyle}
+          label="AutoComplete"
+          placeholder="Placeholder..."
+          placeholderTextColor="gray"
+          onChangeText={e => {
+            setValue(e);
+          }}
+        />
+      </View>
+    );
+  };
+
+  export default TextInputComponent;
+
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 20,
+    },
+    input: {
+      marginTop: 20,
+      height: 55,
+      paddingHorizontal: 16,
+      borderRadius: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+    inputStyle: { fontSize: 16 },
+    labelStyle: { fontSize: 14 },
+    placeholderStyle: { fontSize: 16 },
+    textErrorStyle: { fontSize: 16 },
+    hashtagStyle: {
+      borderWidth: 0,
+      borderRadius: 16,
+      padding: 8,
+      backgroundColor: 'white',
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+    hashtagTextStyle: {
+      fontSize: 16,
+    },
+  });
 ```
