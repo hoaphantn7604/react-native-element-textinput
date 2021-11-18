@@ -119,7 +119,7 @@ const AutoCompleteComponent: CTextInput = props => {
   };
 
   const _renderItemSelected = () => {
-    if (values && values.length > 0 && isFocus) {
+    if (values && values.length > 0) {
       return (
         <ScrollView>
           <View style={styles.listContainer}>
