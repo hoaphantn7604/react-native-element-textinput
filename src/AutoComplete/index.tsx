@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
 import { styles } from './styles';
 import { CTextInput } from './type';
+import { ScrollView } from 'react-native-virtualized-view';
 
 const ic_close = require('./icon/close.png');
 
@@ -120,14 +121,16 @@ const AutoCompleteComponent: CTextInput = props => {
   const _renderItemSelected = () => {
     if (values && values.length > 0 && isFocus) {
       return (
-        <View style={styles.listContainer}>
-          <FlatList
-            keyboardShouldPersistTaps="handled"
-            data={values}
-            renderItem={_renderItem}
-            keyExtractor={(item, index) => index.toString()}
-          />
-        </View>
+        <ScrollView>
+          <View style={styles.listContainer}>
+            <FlatList
+              keyboardShouldPersistTaps="handled"
+              data={values}
+              renderItem={_renderItem}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        </ScrollView>
       )
     }
   };
@@ -160,7 +163,7 @@ const AutoCompleteComponent: CTextInput = props => {
   }, [isFocus, text, placeholderStyle, labelStyle]);
 
   return (
-    <View>
+    <>
       <View style={[styles.container, style, colorFocus]}>
         <View
           style={styles.textInput}>
@@ -185,8 +188,8 @@ const AutoCompleteComponent: CTextInput = props => {
       {_renderItemSelected()}
       {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
-      ): null}
-    </View>
+      ) : null}
+    </>
   );
 };
 

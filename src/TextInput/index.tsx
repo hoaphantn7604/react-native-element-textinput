@@ -215,7 +215,7 @@ const TextInputComponent: CTextInput = props => {
   }, [isFocus, text, placeholderStyle, labelStyle]);
 
   return (
-    <View>
+    <>
       <View style={[styles.container, style, colorFocus]}>
         <View
           style={[
@@ -245,7 +245,7 @@ const TextInputComponent: CTextInput = props => {
       {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
       ) : null}
-    </View>
+    </>
   );
 };
 

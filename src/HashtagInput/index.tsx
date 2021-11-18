@@ -162,7 +162,7 @@ const HashtagInputComponent: CTextInput = props => {
   }, [isFocus, text, placeholderStyle, labelStyle]);
 
   return (
-    <View>
+    <>
       <View style={[styles.container, style, colorFocus]}>
         <View
           style={styles.textInput}>
@@ -188,7 +188,7 @@ const HashtagInputComponent: CTextInput = props => {
       {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
       ) : null}
-    </View>
+    </>
   );
 };
 
