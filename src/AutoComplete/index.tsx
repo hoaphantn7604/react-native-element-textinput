@@ -110,7 +110,7 @@ const AutoCompleteComponent: CTextInput = props => {
 
   const _renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
-      <TouchableOpacity key={index} onPress={() => { onChange(item); Keyboard.dismiss() }}>
+      <TouchableOpacity key={index} onPress={() => { onChange(item); setValues(null); Keyboard.dismiss() }}>
         {renderItem ? renderItem(item) : <View style={styles.item}>
           <Text style={[styles.textItem, font()]}>{item}</Text>
         </View>}
@@ -121,7 +121,7 @@ const AutoCompleteComponent: CTextInput = props => {
   const _renderItemSelected = () => {
     if (values && values.length > 0) {
       return (
-        <ScrollView>
+        <ScrollView keyboardShouldPersistTaps="handled">
           <View style={styles.listContainer}>
             <FlatList
               keyboardShouldPersistTaps="handled"
