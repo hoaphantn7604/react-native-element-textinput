@@ -22,8 +22,12 @@ or
 - [react-native-template-components](https://github.com/hoaphantn7604/react-native-template-components) A beautiful template for React Native.
 
 ### Demo
-![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.gif)
-![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example1.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example2.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example3.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example4.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example5.png)
 
 #### TextInput extends TextInputProps
 | Props              | Params               | isRequire | default                            |
