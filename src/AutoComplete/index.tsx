@@ -152,6 +152,7 @@ const AutoCompleteComponent: CTextInput = props => {
     if (isFocus || text.length > 0 && label) {
       return {
         top: 5,
+        color: focusColor,
         ...labelStyle
       };
     } else {
