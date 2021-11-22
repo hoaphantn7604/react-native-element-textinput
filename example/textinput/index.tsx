@@ -1,13 +1,15 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-virtualized-view';
-import Example1 from './textinput/example1';
-import Example2 from './textinput/example2';
-import Example3 from './textinput/example3';
-import Example4 from './textinput/example4';
-import Example5 from './textinput/example5';
+import Example1 from './example1';
+import Example2 from './example2';
+import Example3 from './example3';
+import Example4 from './example4';
+import Example5 from './example5';
 
-const TextInputScreen = _props => {
+export interface Props {}
+
+const TextInputScreen: React.FC<Props> = _props => {
   return (
     <View style={styles.container}>
       <ScrollView>
