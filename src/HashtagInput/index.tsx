@@ -34,7 +34,8 @@ const HashtagInputComponent: CTextInput = props => {
     onChangeText = (value: string) => { },
     renderLeftIcon,
     renderRightIcon,
-    onChangeValue = (value: string[]) => { }
+    onChangeValue = (value: string[]) => { },
+    renderHashtagItem
   } = props;
 
   const [text, setText] = useState<string>('');
@@ -119,6 +120,13 @@ const HashtagInputComponent: CTextInput = props => {
       return (
         <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {hashtag.map((e, index) => {
+            if (renderHashtagItem) {
+              return <TouchableOpacity
+                key={index}
+              >
+                {renderHashtagItem(e, () => { onRemoveItem(index) })}
+              </TouchableOpacity>
+            }
             return (
               <TouchableOpacity
                 key={index}
@@ -151,7 +159,7 @@ const HashtagInputComponent: CTextInput = props => {
     if (isFocus || text.length > 0 && label) {
       return {
         top: 5,
-        color: isFocus ? focusColor: null,
+        color: isFocus ? focusColor : null,
         ...labelStyle
       };
     } else {

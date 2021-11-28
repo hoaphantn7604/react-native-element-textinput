@@ -28,6 +28,7 @@ interface Props extends TextInputProps {
   renderRightIcon?: () => JSX.Element | null | undefined;
   renderLeftIcon?: () => JSX.Element | null | undefined;
   onChangeValue?: (value: string[]) => void
+  renderHashtagItem?: (item: any, onRemove?: () => void) => JSX.Element | null | undefined;
 }
 
 export type CTextInput = React.FC<Props>;
