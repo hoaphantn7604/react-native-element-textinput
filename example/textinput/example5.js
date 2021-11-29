@@ -43,7 +43,10 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 2,
   },
-  inputStyle: { fontSize: 16 },
+  inputStyle: { 
+    fontSize: 16,
+    minWidth: 80,
+  },
   labelStyle: {
     fontSize: 14,
     position: 'absolute',
