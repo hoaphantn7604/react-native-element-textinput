@@ -1,37 +1,40 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { HashtagInput } from 'react-native-element-textinput';
 
-const TextInputComponent = props => {
-  const [value, setValue] = useState([]);
+const TextInputComponent = () => {
+  const [value, setValue] = useState<string[]>([]);
 
   return (
-    <HashtagInput
-      data={value}
-      style={styles.input}
-      inputStyle={styles.inputStyle}
-      labelStyle={styles.labelStyle}
-      placeholderStyle={styles.placeholderStyle}
-      textErrorStyle={styles.textErrorStyle}
-      hashtagStyle={styles.hashtagStyle}
-      hashtagTextStyle={styles.hashtagTextStyle}
-      placeholder="Hashtag..."
-      placeholderTextColor="gray"
-      onChangeValue={value => {
-        setValue(value);
-      }}
-    />
+    <View style={styles.container}>
+      <HashtagInput
+        data={value}
+        style={styles.input}
+        inputStyle={styles.inputStyle}
+        labelStyle={styles.labelStyle}
+        placeholderStyle={styles.placeholderStyle}
+        textErrorStyle={styles.textErrorStyle}
+        hashtagStyle={styles.hashtagStyle}
+        hashtagTextStyle={styles.hashtagTextStyle}
+        placeholder="Hashtag..."
+        placeholderTextColor="gray"
+        onChangeValue={value => {
+          setValue(value);
+        }}
+      />
+    </View>
   );
 };
 
 export default TextInputComponent;
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
   input: {
-    marginVertical: 16,
     height: 55,
-    marginHorizontal: 4,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderRadius: 8,
     backgroundColor: 'white',
     shadowColor: '#000',

@@ -1,36 +1,39 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { TextInput } from 'react-native-element-textinput';
 
-const TextInputComponent = props => {
+const TextInputComponent = () => {
   const [value, setValue] = useState('');
 
   return (
-    <TextInput
-      value={value}
-      style={styles.input}
-      inputStyle={styles.inputStyle}
-      labelStyle={styles.labelStyle}
-      placeholderStyle={styles.placeholderStyle}
-      textErrorStyle={styles.textErrorStyle}
-      label="TextInput"
-      placeholder="Placeholder"
-      placeholderTextColor="gray"
-      onChangeText={text => {
-        setValue(text);
-      }}
-    />
+    <View style={styles.container}>
+      <TextInput
+        value={value}
+        style={styles.input}
+        inputStyle={styles.inputStyle}
+        labelStyle={styles.labelStyle}
+        placeholderStyle={styles.placeholderStyle}
+        textErrorStyle={styles.textErrorStyle}
+        label="TextInput"
+        placeholder="Placeholder"
+        placeholderTextColor="gray"
+        onChangeText={text => {
+          setValue(text);
+        }}
+      />
+    </View>
   );
 };
 
 export default TextInputComponent;
 
 const styles = StyleSheet.create({
+  container: {
+    padding: 16,
+  },
   input: {
-    marginVertical: 16,
     height: 55,
-    marginHorizontal: 4,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderRadius: 8,
     backgroundColor: 'white',
     shadowColor: '#000',

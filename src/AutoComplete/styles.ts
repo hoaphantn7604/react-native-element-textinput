@@ -46,7 +46,8 @@ export const styles = StyleSheet.create({
     elevation: 2,
   },
   item: {
-    padding: 17,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
