@@ -23,12 +23,13 @@ const TagInputComponent: CTextInput = props => {
     textError,
     focusColor,
     data = [],
-    hashtagStyle,
-    hashtagTextStyle,
+    tagsStyle,
+    tagsTextStyle,
     onFocus,
     onBlur,
     onChangeText = (value: string) => { },
-    onChangeValue = (value: string[]) => { }
+    onChangeValue = (value: string[]) => { },
+    renderTagsItem
   } = props;
 
   const [text, setText] = useState<string>('');
@@ -94,14 +95,23 @@ const TagInputComponent: CTextInput = props => {
     return (
       <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap', paddingVertical: 8 }}>
         {hashtag && hashtag.map((e, index) => {
+          
+          if (renderTagsItem) {
+            return <TouchableOpacity
+              key={index}
+            >
+              {renderTagsItem(e, () => { onRemoveItem(index) })}
+            </TouchableOpacity>
+          }
+          
           return (
             <TouchableOpacity
               key={index}
-              style={[styles.selectedItem, hashtagStyle]}
+              style={[styles.selectedItem, tagsStyle]}
               onPress={() => { onRemoveItem(index) }}
             >
-              <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>{e}</Text>
-              <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>ⓧ</Text>
+              <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>{e}</Text>
+              <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>ⓧ</Text>
             </TouchableOpacity>
           )
         })}

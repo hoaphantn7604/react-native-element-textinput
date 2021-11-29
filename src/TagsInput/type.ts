@@ -15,8 +15,8 @@ interface Props extends TextInputProps {
   labelStyle?: StyleProp<TextStyle>;
   placeholderStyle?: StyleProp<TextStyle>;
   textErrorStyle?: StyleProp<TextStyle>;
-  hashtagStyle?: StyleProp<ViewStyle>;
-  hashtagTextStyle?: StyleProp<TextStyle>;
+  tagsStyle?: StyleProp<ViewStyle>;
+  tagsTextStyle?: StyleProp<TextStyle>;
   textError?: string;
   label?: string;
   focusColor?: string;
@@ -24,6 +24,7 @@ interface Props extends TextInputProps {
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onChangeValue?: (value: string[]) => void
+  renderTagsItem?: (item: any, onRemove?: () => void) => JSX.Element | null | undefined;
 }
 
 export type CTextInput = React.FC<Props>;

@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { TagsInput } from 'react-native-element-textinput';
 
 const TextInputComponent = () => {
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState([]);
 
   return (
     <View style={styles.container}>
@@ -14,8 +14,8 @@ const TextInputComponent = () => {
         labelStyle={styles.labelStyle}
         placeholderStyle={styles.placeholderStyle}
         textErrorStyle={styles.textErrorStyle}
-        hashtagStyle={styles.hashtagStyle}
-        hashtagTextStyle={styles.hashtagTextStyle}
+        tagsStyle={styles.tagsStyle}
+        tagsTextStyle={styles.tagsTextStyle}
         label="TagsInput"
         placeholder="Tags..."
         placeholderTextColor="gray"
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   },
   placeholderStyle: { fontSize: 16 },
   textErrorStyle: { fontSize: 16 },
-  hashtagStyle: {
+  tagsStyle: {
     borderWidth: 0,
     borderRadius: 16,
     padding: 8,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 2,
   },
-  hashtagTextStyle: {
+  tagsTextStyle: {
     fontSize: 16,
   },
 });

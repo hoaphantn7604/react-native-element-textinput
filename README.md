@@ -42,7 +42,7 @@ or
 | renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
 | renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
 
-#### HashtagInput, TagsInput extends TextInputProps
+#### HashtagInput extends TextInputProps
 | Props              | Params               | isRequire | default                            |
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | style              | ViewStyle            | No        | Styling for container view         |
@@ -59,11 +59,36 @@ or
 | fontFamily         | String               | No        | Customize font style               |
 | renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
 | renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
-| hashtagValue       | String[]             | No        | Data is a plain array              |
+| data               | String[]             | No        | Data is a plain array              |
 | hashtagStyle       | ViewStyle            | No        | Styling for hashtash container view|
-| renderHashtagItem  | (item, unSelect?: () => void) => JSX.Element     | No        | Takes an item from data and renders it into the list selected       |
 | hashtagTextStyle   | TextStyle            | No        | Styling for hashtag text           |
-| onChangeHashtag    | (string[]) => void   | No        | Callback that is called when submit value |
+| onChangeValue      | (string[]) => void   | No        | Callback that is called when submit value |
+| renderHashtagItem  | (item, unSelect?: () => void) => JSX.Element     | No        | Takes an item from data and renders it into the list selected       |
+
+#### TagsInput extends TextInputProps
+| Props              | Params               | isRequire | default                            |
+| ------------------ | -------------------- | --------- | ---------------------------------- |
+| style              | ViewStyle            | No        | Styling for container view         |
+| label              | String               | No        | Label for textinput                |
+| labelStyle         | TextStyle            | No        | Styling for label text             |
+| placeholderStyle   | TextStyle            | No        | Styling for placeholderStyle text  |
+| inputStyle         | TextStyle            | No        | Styling for input view             |
+| textError          | String               | No        | Text error                         |
+| textErrorStyle     | TextStyle            | No        | Styling for text error             |
+| showIcon           | Boolean              | No        | Show or hide icon clear text       |
+| iconStyle          | ImageStyle           | No        | Styling for icon clear text        |
+| numeric            | Boolean              | No        | Input value is numeric             |
+| focusColor         | String               | No        | Color when focus to textinput      |
+| fontFamily         | String               | No        | Customize font style               |
+| renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
+| renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
+| data               | String[]             | No        | Data is a plain array              |
+| tagsStyle          | ViewStyle            | No        | Styling for hashtash container view|
+| hashtagTextStyle   | TextStyle            | No        | Styling for hashtag text           |
+| onChangeValue      | (string[]) => void   | No        | Callback that is called when submit value |
+| renderTagsItem     | (item, unSelect?: () => void) => JSX.Element     | No        | Takes an item from data and renders it into the list selected  |
+
+
 
 
 #### AutoComplete extends TextInputProps
@@ -343,7 +368,7 @@ or
   import { TagsInput } from 'react-native-element-textinput';
 
   const TextInputComponent = () => {
-    const [value, setValue] = useState<string[]>([]);
+    const [value, setValue] = useState([]);
 
     return (
       <View style={styles.container}>
@@ -354,8 +379,8 @@ or
           labelStyle={styles.labelStyle}
           placeholderStyle={styles.placeholderStyle}
           textErrorStyle={styles.textErrorStyle}
-          hashtagStyle={styles.hashtagStyle}
-          hashtagTextStyle={styles.hashtagTextStyle}
+          tagsStyle={styles.tagsStyle}
+          tagsTextStyle={styles.tagsTextStyle}
           label="TagsInput"
           placeholder="Tags..."
           placeholderTextColor="gray"
@@ -400,7 +425,7 @@ or
     },
     placeholderStyle: { fontSize: 16 },
     textErrorStyle: { fontSize: 16 },
-    hashtagStyle: {
+    tagsStyle: {
       borderWidth: 0,
       borderRadius: 16,
       padding: 8,
@@ -414,7 +439,7 @@ or
       shadowRadius: 1.41,
       elevation: 2,
     },
-    hashtagTextStyle: {
+    tagsTextStyle: {
       fontSize: 16,
     },
   });
