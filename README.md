@@ -1,8 +1,8 @@
 ## react-native-element-textinput
-A react-native TextInput, HashtagInput and AutoComplete component easy to customize for both iOS and Android.
+A react-native TextInput, TagsInput and AutoComplete component easy to customize for both iOS and Android.
 
 ## Features
-* TextInput, HashtagInput and AutoComplete in one package
+* TextInput, TagsInput and AutoComplete in one package
 * Easy to use
 * Consistent look and feel on iOS and Android
 * Customizable font size, colors and animation duration
