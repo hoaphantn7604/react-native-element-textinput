@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { CTextInput } from './type';
@@ -41,7 +41,6 @@ const HashtagInputComponent: CTextInput = props => {
   const [text, setText] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [reload, setReload] = useState(Math.random());
 
   const onChange = (text: string) => {
     setText(text);
@@ -93,9 +92,10 @@ const HashtagInputComponent: CTextInput = props => {
   const onRemoveItem = (index: number) => {
     if (hashtag) {
       if (props.editable === undefined || props.editable) {
-        hashtag?.splice(index, 1);
-        onChangeValue(hashtag);
-        setReload(Math.random());
+        var array = [...hashtag];
+        array.splice(index, 1);
+        setHashtag(array);
+        onChangeValue(array);
       }
     }
   };
@@ -111,14 +111,13 @@ const HashtagInputComponent: CTextInput = props => {
       hashtag.push(text);
       setText('');
       onChangeValue(hashtag);
-      setReload(Math.random());
     }
   };
 
-  const _renderItemSelected = () => {
+  const _renderItemSelected = useCallback(() => {
     if (hashtag && hashtag.length > 0) {
       return (
-        <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
           {hashtag.map((e, index) => {
             if (renderHashtagItem) {
               return <TouchableOpacity
@@ -140,7 +139,7 @@ const HashtagInputComponent: CTextInput = props => {
           })}
         </View>)
     }
-  };
+  }, [hashtag]);
 
   const colorFocus = useMemo(() => {
     if (isFocus && focusColor) {

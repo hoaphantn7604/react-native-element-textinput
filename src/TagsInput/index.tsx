@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { CTextInput } from './type';
@@ -35,7 +35,6 @@ const TagInputComponent: CTextInput = props => {
   const [text, setText] = useState<string>('');
   const [hashtag, setHashtag] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [reload, setReload] = useState(Math.random());
 
   const onChange = (text: string) => {
     setText(text);
@@ -69,9 +68,10 @@ const TagInputComponent: CTextInput = props => {
   const onRemoveItem = (index: number) => {
     if (hashtag) {
       if (props.editable === undefined || props.editable) {
-        hashtag?.splice(index, 1);
-        onChangeValue(hashtag);
-        setReload(Math.random());
+        var array = [...hashtag];
+        array.splice(index, 1);
+        setHashtag(array);
+        onChangeValue(array);
       }
     }
   };
@@ -87,44 +87,62 @@ const TagInputComponent: CTextInput = props => {
       hashtag.push(text);
       setText('');
       onChangeValue(hashtag);
-      setReload(Math.random());
     }
   };
 
+  const onBackspace = () => {
+    if (text.length === 0 && hashtag) {
+      var array = [...hashtag];
+      array.pop();
+      setHashtag(array);
+      onChangeValue(array);
+    }
+  }
+
+  const _renderTags = useCallback(() => {
+    if (hashtag) {
+      return hashtag.map((e, index) => {
+        if (renderTagsItem) {
+          return <TouchableOpacity
+            key={index}
+          >
+            {renderTagsItem(e, () => { onRemoveItem(index) })}
+          </TouchableOpacity>
+        }
+        return (
+          <TouchableOpacity
+            key={index}
+            style={[styles.selectedItem, tagsStyle]}
+            onPress={() => { onRemoveItem(index) }}
+          >
+            <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>{e}</Text>
+            <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>ⓧ</Text>
+          </TouchableOpacity>
+        )
+      })
+    }
+    return null;
+  }, [hashtag]);
+
   const _renderItemSelected = () => {
     return (
-      <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap', paddingVertical: 8 }}>
-        {hashtag && hashtag.map((e, index) => {
-          
-          if (renderTagsItem) {
-            return <TouchableOpacity
-              key={index}
-            >
-              {renderTagsItem(e, () => { onRemoveItem(index) })}
-            </TouchableOpacity>
-          }
-          
-          return (
-            <TouchableOpacity
-              key={index}
-              style={[styles.selectedItem, tagsStyle]}
-              onPress={() => { onRemoveItem(index) }}
-            >
-              <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>{e}</Text>
-              <Text style={[styles.selectedTextItem, tagsTextStyle, font()]}>ⓧ</Text>
-            </TouchableOpacity>
-          )
-        })}
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', paddingVertical: 8 }}>
+        {_renderTags()}
         <TextInput
           {...props}
           style={[styles.input, inputStyle, font()]}
           value={text}
-          placeholder={isFocus || !label ? placeholder : ''}
+          placeholder={placeholder}
           placeholderTextColor={placeholderTextColor}
           onChangeText={onChange}
           onFocus={onFocusCustom}
           onBlur={onBlurCustom}
           onSubmitEditing={onSubmitEdit}
+          onKeyPress={({ nativeEvent }) => {
+            if (nativeEvent.key === 'Backspace') {
+              onBackspace();
+            }
+          }}
         />
       </View>)
   };
@@ -143,7 +161,7 @@ const TagInputComponent: CTextInput = props => {
   }, [isFocus]);
 
   const styleLable: any = useMemo(() => {
-    if (isFocus || text.length > 0 && label) {
+    if (isFocus || hashtag && hashtag.length > 0 && label) {
       return {
         top: 5,
         color: focusColor,
@@ -155,7 +173,7 @@ const TagInputComponent: CTextInput = props => {
         ...placeholderStyle
       }
     }
-  }, [isFocus, text, placeholderStyle, labelStyle]);
+  }, [isFocus, hashtag, placeholderStyle, labelStyle]);
 
   return (
     <>
@@ -164,9 +182,7 @@ const TagInputComponent: CTextInput = props => {
           style={styles.textInput}>
           <View style={{ flex: 1, justifyContent: 'center' }}>
             {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
-            <View style={{ flexDirection: 'row' }}>
-              {_renderItemSelected()}
-            </View>
+            {_renderItemSelected()}
           </View>
         </View>
       </View>
