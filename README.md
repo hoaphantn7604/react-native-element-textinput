@@ -28,6 +28,7 @@ or
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example3.png)
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example4.png)
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example5.png)
+![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/example6.png)
 
 #### TextInput extends TextInputProps
 | Props              | Params               | isRequire | default                            |
