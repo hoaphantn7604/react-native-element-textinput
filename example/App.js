@@ -6,6 +6,7 @@ import Example2 from './textinput/example2';
 import Example3 from './textinput/example3';
 import Example4 from './textinput/example4';
 import Example5 from './textinput/example5';
+import Example6 from './textinput/example6';
 
 const TextInputScreen = _props => {
   return (
@@ -16,6 +17,7 @@ const TextInputScreen = _props => {
         <Example3 />
         <Example4 />
         <Example5 />
+        <Example6 />
       </ScrollView>
     </View>
   );

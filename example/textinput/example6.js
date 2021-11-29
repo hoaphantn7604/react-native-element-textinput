@@ -1,25 +1,24 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
-import { TagsInput } from 'react-native-element-textinput';
+import { AutoComplete } from 'react-native-element-textinput';
 
 const TextInputComponent = props => {
-  const [value, setValue] = useState([]);
+  const [value, setValue] = useState('');
 
   return (
-    <TagsInput
-      data={value}
+    <AutoComplete
+      value={value}
+      data={['hello', 'how are you', 'complete']}
       style={styles.input}
       inputStyle={styles.inputStyle}
       labelStyle={styles.labelStyle}
       placeholderStyle={styles.placeholderStyle}
       textErrorStyle={styles.textErrorStyle}
-      hashtagStyle={styles.hashtagStyle}
-      hashtagTextStyle={styles.hashtagTextStyle}
-      label="TagsInput"
-      placeholder="Tags..."
+      label="Auto Complete"
+      placeholder="Placeholder..."
       placeholderTextColor="gray"
-      onChangeValue={value => {
-        setValue(value);
+      onChangeText={e => {
+        setValue(e);
       }}
     />
   );
@@ -30,6 +29,7 @@ export default TextInputComponent;
 const styles = StyleSheet.create({
   input: {
     marginVertical: 16,
+    height: 55,
     marginHorizontal: 4,
     paddingHorizontal: 16,
     borderRadius: 8,
@@ -44,14 +44,7 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   inputStyle: { fontSize: 16 },
-  labelStyle: {
-    fontSize: 14,
-    position: 'absolute',
-    top: -10,
-    backgroundColor: 'white',
-    paddingHorizontal: 4,
-    marginLeft: -4,
-  },
+  labelStyle: { fontSize: 14 },
   placeholderStyle: { fontSize: 16 },
   textErrorStyle: { fontSize: 16 },
   hashtagStyle: {
