@@ -29,7 +29,8 @@ or
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | style              | ViewStyle            | No        | Styling for container view         |
 | label              | String               | No        | Label for textinput                |
-| labelStyle         | TextStyle            | No        | Styling for label                  |
+| labelStyle         | TextStyle            | No        | Styling for label text             |
+| placeholderStyle   | TextStyle            | No        | Styling for placeholderStyle text  |
 | inputStyle         | TextStyle            | No        | Styling for input view             |
 | textError          | String               | No        | Text error                         |
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
@@ -46,7 +47,8 @@ or
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | style              | ViewStyle            | No        | Styling for container view         |
 | label              | String               | No        | Label for textinput                |
-| labelStyle         | TextStyle            | No        | Styling for label                  |
+| labelStyle         | TextStyle            | No        | Styling for label text             |
+| placeholderStyle   | TextStyle            | No        | Styling for placeholderStyle text  |
 | inputStyle         | TextStyle            | No        | Styling for input view             |
 | textError          | String               | No        | Text error                         |
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
@@ -70,7 +72,8 @@ or
 | data               | String[]                     | No        | Data is a plain array              |
 | style              | ViewStyle                    | No        | Styling for container view         |
 | label              | String                       | No        | Label for textinput                |
-| labelStyle         | TextStyle                    | No        | Styling for label                  |
+| labelStyle         | TextStyle                    | No        | Styling for label text             |
+| placeholderStyle   | TextStyle                    | No        | Styling for placeholderStyle text  |
 | inputStyle         | TextStyle                    | No        | Styling for input view             |
 | textError          | String                       | No        | Text error                         |
 | textErrorStyle     | TextStyle                    | No        | Styling for text error             |
