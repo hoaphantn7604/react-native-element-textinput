@@ -84,7 +84,7 @@ or
 | renderRightIcon    | () => JSX.Element    | No        | Customize right icon for textinput |
 | data               | String[]             | No        | Data is a plain array              |
 | tagsStyle          | ViewStyle            | No        | Styling for hashtash container view|
-| hashtagTextStyle   | TextStyle            | No        | Styling for hashtag text           |
+| tagsTextStyle   | TextStyle            | No        | Styling for hashtag text           |
 | onChangeValue      | (string[]) => void   | No        | Callback that is called when submit value |
 | renderTagsItem     | (item, unSelect?: () => void) => JSX.Element     | No        | Takes an item from data and renders it into the list selected  |
 
