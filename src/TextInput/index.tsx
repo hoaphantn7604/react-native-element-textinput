@@ -59,6 +59,8 @@ const TextInputComponent: CTextInput = props => {
       } else {
         setText(value);
       }
+    }else{
+      setText("");
     }
   }, [value]);
 

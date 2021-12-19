@@ -79,6 +79,8 @@ const TagInputComponent: CTextInput = props => {
   useEffect(() => {
     if (data) {
       setHashtag(data);
+    }else{
+      setHashtag(null);
     }
   }, [data]);
 
