@@ -33,21 +33,15 @@ const TextInputComponent: CTextInput = props => {
     numeric,
     textError,
     focusColor,
-    hashtagValue,
-    hashtagStyle,
-    hashtagTextStyle,
     onFocus,
     onBlur,
     onChangeText = (value: string) => { },
     renderLeftIcon,
     renderRightIcon,
-    onChangeHashtag = (value: string[]) => { }
   } = props;
 
   const [text, setText] = useState<string>('');
-  const [hashtag, setHashtag] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
-  const [reload, setReload] = useState(Math.random());
   const [textEntry, setTextEntry] = useState<boolean>(
     secureTextEntry ? true : false,
   );
@@ -59,7 +53,7 @@ const TextInputComponent: CTextInput = props => {
       } else {
         setText(value);
       }
-    }else{
+    } else {
       setText("");
     }
   }, [value]);
@@ -144,51 +138,6 @@ const TextInputComponent: CTextInput = props => {
     }
   };
 
-  const onRemoveItem = (index: number) => {
-    if (hashtag) {
-      if (props.editable === undefined || props.editable) {
-        hashtag?.splice(index, 1);
-        onChangeHashtag(hashtag);
-        setReload(Math.random());
-      }
-    }
-  };
-
-  useEffect(() => {
-    if (hashtagValue) {
-      setHashtag(hashtagValue);
-    }
-  }, [hashtagValue]);
-
-  const onSubmitEdit = () => {
-    if (hashtag && text.length > 0) {
-      hashtag.push(text);
-      setText('');
-      onChangeHashtag(hashtag);
-      setReload(Math.random());
-    }
-  };
-
-  const _renderItemSelected = () => {
-    if (hashtag && hashtag.length > 0) {
-      return (
-        <View key={reload} style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
-          {hashtag.map((e, index) => {
-            return (
-              <TouchableOpacity
-                key={index}
-                style={[styles.selectedItem, hashtagStyle]}
-                onPress={() => { onRemoveItem(index) }}
-              >
-                <Text style={[{ fontSize: 12, color: 'gray' }, font()]}>{e}</Text>
-                <Text style={[styles.selectedTextItem, hashtagTextStyle]}>ⓧ</Text>
-              </TouchableOpacity>
-            )
-          })}
-        </View>)
-    }
-  };
-
   const colorFocus = useMemo(() => {
     if (isFocus && focusColor) {
       return {
@@ -206,7 +155,7 @@ const TextInputComponent: CTextInput = props => {
     if (isFocus || text.length > 0 && label) {
       return {
         top: 5,
-        color: isFocus ? focusColor: null,
+        color: isFocus ? focusColor : null,
         ...labelStyle
       };
     } else {
@@ -238,13 +187,11 @@ const TextInputComponent: CTextInput = props => {
               onChangeText={onChange}
               onFocus={onFocusCustom}
               onBlur={onBlurCustom}
-              onSubmitEditing={onSubmitEdit}
             />
           </View>
           {_renderRightIcon()}
         </View>
       </View>
-      {_renderItemSelected()}
       {textError ? (
         <Text style={[styles.textError, textErrorStyle]}>{textError}</Text>
       ) : null}
