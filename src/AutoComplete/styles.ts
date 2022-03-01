@@ -32,7 +32,6 @@ export const styles = StyleSheet.create({
   },
   listContainer: {
     marginTop: 2,
-    maxHeight: 200,
     borderWidth: 0.5,
     borderColor: '#EEEEEE',
     backgroundColor: 'white',
