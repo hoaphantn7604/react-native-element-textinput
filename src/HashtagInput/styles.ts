@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 0,
     flex:1,
+    color: 'black'
   },
   label: {
     fontSize: 16,

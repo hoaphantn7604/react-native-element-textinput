@@ -13,7 +13,8 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 0,
     minWidth: 80,
-    marginVertical: 8
+    marginVertical: 8,
+    color: 'black'
   },
   label: {
     fontSize: 16,
