@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
 import { styles } from './styles';
 import { CTextInput } from './type';
@@ -28,6 +28,7 @@ const AutoCompleteComponent: CTextInput = props => {
     textError,
     focusColor,
     data,
+    value,
     onFocus,
     onBlur,
     onChangeText = (value: string) => { },
@@ -39,6 +40,14 @@ const AutoCompleteComponent: CTextInput = props => {
   const [text, setText] = useState<string>('');
   const [values, setValues] = useState<string[] | null>(null);
   const [isFocus, setIsFocus] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (value) {
+      setText(value);
+    } else {
+      setText("");
+    }
+  }, [value]);
 
   const onChange = (text: string) => {
     setText(text);
@@ -152,7 +161,7 @@ const AutoCompleteComponent: CTextInput = props => {
     if (isFocus || text.length > 0 && label) {
       return {
         top: 5,
-        color: isFocus ? focusColor: null,
+        color: isFocus ? focusColor : null,
         ...labelStyle
       };
     } else {
