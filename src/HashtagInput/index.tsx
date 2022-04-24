@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { CTextInput } from './type';
+import { HashtagProps } from './model';
 
 const ic_close = require('./icon/close.png');
 
@@ -11,7 +11,7 @@ const defaultProps = {
   showIcon: true,
 };
 
-const HashtagInputComponent: CTextInput = props => {
+const HashtagInputComponent: HashtagProps = props => {
   const {
     fontFamily,
     style,
@@ -31,10 +31,10 @@ const HashtagInputComponent: CTextInput = props => {
     hashtagTextStyle,
     onFocus,
     onBlur,
-    onChangeText = (value: string) => { },
+    onChangeText = (_value: string) => { },
     renderLeftIcon,
     renderRightIcon,
-    onChangeValue = (value: string[]) => { },
+    onChangeValue = (_value: string[]) => { },
     renderHashtagItem
   } = props;
 

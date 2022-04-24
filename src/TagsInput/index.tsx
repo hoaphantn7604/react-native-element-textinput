@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { CTextInput } from './type';
+import { TagsInputProps } from './model';
 
 
 const defaultProps = {
@@ -9,7 +9,7 @@ const defaultProps = {
   value: '',
 };
 
-const TagInputComponent: CTextInput = props => {
+const TagInputComponent: TagsInputProps = props => {
   const {
     fontFamily,
     style,
@@ -27,8 +27,8 @@ const TagInputComponent: CTextInput = props => {
     tagsTextStyle,
     onFocus,
     onBlur,
-    onChangeText = (value: string) => { },
-    onChangeValue = (value: string[]) => { },
+    onChangeText = (_value: string) => { },
+    onChangeValue = (_value: string[]) => { },
     renderTagsItem
   } = props;
 

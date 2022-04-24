@@ -8,7 +8,7 @@ import {
   ViewStyle
 } from 'react-native';
 
-interface Props extends TextInputProps {
+interface IProps extends TextInputProps {
   fontFamily?: string;
   style?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
@@ -24,7 +24,7 @@ interface Props extends TextInputProps {
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onChangeValue?: (value: string[]) => void
-  renderTagsItem?: (item: any, onRemove?: () => void) => JSX.Element | null | undefined;
+  renderTagsItem?: (item: any, onRemove?: () => void) => React.ReactNode | null | undefined;
 }
 
-export type CTextInput = React.FC<Props>;
+export type TagsInputProps = React.FC<IProps>;

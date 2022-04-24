@@ -9,7 +9,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-interface Props extends TextInputProps {
+interface IProps extends TextInputProps {
   fontFamily?: string;
   style?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
@@ -20,12 +20,13 @@ interface Props extends TextInputProps {
   textError?: string;
   label?: string;
   showIcon?: boolean;
-  numeric?: boolean;
   focusColor?: string;
+  data?: string[];
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  renderRightIcon?: () => JSX.Element | null | undefined;
-  renderLeftIcon?: () => JSX.Element | null | undefined;
+  renderRightIcon?: () => React.ReactNode | null | undefined;
+  renderLeftIcon?: () => React.ReactNode | null | undefined;
+  renderItem?: (item: string) => React.ReactNode | null | undefined;
 }
 
-export type CTextInput = React.FC<Props>;
+export type AutoCompleteProps = React.FC<IProps>;

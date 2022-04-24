@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, Image, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
 import { styles } from './styles';
-import { CTextInput } from './type';
+import { AutoCompleteProps } from './model';
 import { ScrollView } from 'react-native-virtualized-view';
 
 const ic_close = require('./icon/close.png');
@@ -12,7 +12,7 @@ const defaultProps = {
   showIcon: true,
 };
 
-const AutoCompleteComponent: CTextInput = props => {
+const AutoCompleteComponent: AutoCompleteProps = props => {
   const {
     fontFamily,
     style,
@@ -30,7 +30,7 @@ const AutoCompleteComponent: CTextInput = props => {
     data,
     onFocus,
     onBlur,
-    onChangeText = (value: string) => { },
+    onChangeText = (_value: string) => { },
     renderLeftIcon,
     renderRightIcon,
     renderItem

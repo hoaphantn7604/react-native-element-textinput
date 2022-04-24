@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { CTextInput } from './type';
+import { InputProps } from './model';
 
 const ic_eye = require('./icon/eye.png');
 const ic_uneye = require('./icon/uneye.png');
@@ -15,7 +15,7 @@ const defaultProps = {
   numeric: false,
 };
 
-const TextInputComponent: CTextInput = props => {
+const TextInputComponent: InputProps = props => {
   const {
     fontFamily,
     style,
@@ -35,7 +35,7 @@ const TextInputComponent: CTextInput = props => {
     focusColor,
     onFocus,
     onBlur,
-    onChangeText = (value: string) => { },
+    onChangeText = (_value: string) => { },
     renderLeftIcon,
     renderRightIcon,
   } = props;
@@ -49,7 +49,7 @@ const TextInputComponent: CTextInput = props => {
   useEffect(() => {
     if (value) {
       if (numeric) {
-        setText(formatCurrency(value));
+        setText(formatNumeric(value));
       } else {
         setText(value);
       }
@@ -58,12 +58,12 @@ const TextInputComponent: CTextInput = props => {
     }
   }, [value]);
 
-  const formatCurrency = (num: string) => {
+  const formatNumeric = (num: string) => {
     const values = num.toString().replace(/\D/g, '');
     return values.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
   };
 
-  const reConvertCurrency = (x: string) => {
+  const reConvertNumeric = (x: string) => {
     let s;
     s = x.split('.');
     s = s.join('');
@@ -72,8 +72,8 @@ const TextInputComponent: CTextInput = props => {
 
   const onChange = (text: string) => {
     if (numeric) {
-      setText(formatCurrency(text));
-      onChangeText(reConvertCurrency(text));
+      setText(formatNumeric(text));
+      onChangeText(reConvertNumeric(text));
     } else {
       setText(text);
       onChangeText(text);
