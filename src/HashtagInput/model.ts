@@ -1,5 +1,5 @@
-import React from 'react';
-import {
+import type React from 'react';
+import type {
   ImageStyle,
   NativeSyntheticEvent,
   StyleProp,
@@ -26,10 +26,13 @@ interface IProps extends TextInputProps {
   data?: string[];
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  renderRightIcon?: () => React.ReactNode | null | undefined;
-  renderLeftIcon?: () => React.ReactNode | null | undefined;
-  onChangeValue?: (value: string[]) => void
-  renderHashtagItem?: (item: any, onRemove?: () => void) => React.ReactNode | null | undefined;
+  renderRightIcon?: () => JSX.Element | null | undefined;
+  renderLeftIcon?: () => JSX.Element | null | undefined;
+  onChangeValue?: (value: string[]) => void;
+  renderHashtagItem?: (
+    item: any,
+    onRemove?: () => void
+  ) => JSX.Element | null | undefined;
 }
 
 export type HashtagProps = React.FC<IProps>;

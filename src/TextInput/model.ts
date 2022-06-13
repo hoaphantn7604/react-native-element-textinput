@@ -1,5 +1,5 @@
-import React from 'react';
-import {
+import type React from 'react';
+import type {
   ImageStyle,
   NativeSyntheticEvent,
   StyleProp,
@@ -24,8 +24,8 @@ interface Props extends TextInputProps {
   focusColor?: string;
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  renderRightIcon?: () => React.ReactNode | null | undefined;
-  renderLeftIcon?: () => React.ReactNode | null | undefined;
+  renderRightIcon?: () => JSX.Element | null | undefined;
+  renderLeftIcon?: () => JSX.Element | null | undefined;
 }
 
 export type InputProps = React.FC<Props>;

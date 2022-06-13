@@ -1,5 +1,5 @@
-import React from 'react';
-import {
+import type React from 'react';
+import type {
   ImageStyle,
   NativeSyntheticEvent,
   StyleProp,
@@ -24,9 +24,9 @@ interface IProps extends TextInputProps {
   data?: string[];
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  renderRightIcon?: () => React.ReactNode | null | undefined;
-  renderLeftIcon?: () => React.ReactNode | null | undefined;
-  renderItem?: (item: string) => React.ReactNode | null | undefined;
+  renderRightIcon?: () => JSX.Element | null | undefined;
+  renderLeftIcon?: () => JSX.Element | null | undefined;
+  renderItem?: (item: string) => JSX.Element | null | undefined;
 }
 
 export type AutoCompleteProps = React.FC<IProps>;

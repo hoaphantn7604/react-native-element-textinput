@@ -1,7 +1,18 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useMemo, useState } from 'react';
-import { FlatList, Image, Text, TextInput, TouchableOpacity, View, Keyboard } from 'react-native';
+import {
+  FlatList,
+  Image,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Keyboard,
+  StyleProp,
+  TextStyle,
+} from 'react-native';
 import { styles } from './styles';
-import { AutoCompleteProps } from './model';
+import type { AutoCompleteProps } from './model';
 import { ScrollView } from 'react-native-virtualized-view';
 
 const ic_close = require('./icon/close.png');
@@ -12,13 +23,13 @@ const defaultProps = {
   showIcon: true,
 };
 
-const AutoCompleteComponent: AutoCompleteProps = props => {
+const AutoCompleteComponent: AutoCompleteProps = (props) => {
   const {
     fontFamily,
     style,
     inputStyle,
     iconStyle,
-    labelStyle,
+    labelStyle = {},
     placeholderStyle = {},
     textErrorStyle,
     label,
@@ -31,10 +42,10 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
     value,
     onFocus,
     onBlur,
-    onChangeText = (_value: string) => { },
+    onChangeText = (_value: string) => {},
     renderLeftIcon,
     renderRightIcon,
-    renderItem
+    renderItem,
   } = props;
 
   const [text, setText] = useState<string>('');
@@ -45,7 +56,7 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
     if (value) {
       setText(value);
     } else {
-      setText("");
+      setText('');
     }
   }, [value]);
 
@@ -57,11 +68,19 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
 
   const onSearch = (text: string) => {
     if (text.length > 0 && data) {
-      const dataSearch = data.filter(e => {
-        const item = e?.toLowerCase().replace(' ', '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-        const key = text.toLowerCase().replace(' ', '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const dataSearch = data.filter((e) => {
+        const item = e
+          ?.toLowerCase()
+          .replace(' ', '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
+        const key = text
+          .toLowerCase()
+          .replace(' ', '')
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '');
 
-        return item.indexOf(key) >= 0
+        return item.indexOf(key) >= 0;
       });
       setValues(dataSearch);
     } else {
@@ -119,10 +138,21 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
 
   const _renderItem = ({ item, index }: { item: any; index: number }) => {
     return (
-      <TouchableOpacity key={index} onPress={() => { onChange(item); setValues(null); Keyboard.dismiss() }}>
-        {renderItem ? renderItem(item) : <View style={styles.item}>
-          <Text style={[styles.textItem, font()]}>{item}</Text>
-        </View>}
+      <TouchableOpacity
+        key={index}
+        onPress={() => {
+          onChange(item);
+          setValues(null);
+          Keyboard.dismiss();
+        }}
+      >
+        {renderItem ? (
+          renderItem(item)
+        ) : (
+          <View style={styles.item}>
+            <Text style={[styles.textItem, font()]}>{item}</Text>
+          </View>
+        )}
       </TouchableOpacity>
     );
   };
@@ -136,12 +166,13 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
               keyboardShouldPersistTaps="handled"
               data={values}
               renderItem={_renderItem}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={(_item, index) => index.toString()}
             />
           </View>
         </ScrollView>
-      )
+      );
     }
+    return null;
   };
 
   const colorFocus = useMemo(() => {
@@ -150,36 +181,39 @@ const AutoCompleteComponent: AutoCompleteProps = props => {
         borderBottomColor: focusColor,
         borderTopColor: focusColor,
         borderLeftColor: focusColor,
-        borderRightColor: focusColor
+        borderRightColor: focusColor,
       };
     } else {
       return {};
     }
-  }, [isFocus]);
+  }, [focusColor, isFocus]);
 
-  const styleLable: any = useMemo(() => {
-    if (isFocus || text.length > 0 && label) {
+  const styleLable: StyleProp<TextStyle> = useMemo(() => {
+    if (isFocus || (text.length > 0 && label)) {
+      const style: any = labelStyle;
       return {
         top: 5,
         color: isFocus ? focusColor : null,
-        ...labelStyle
+        ...style,
       };
     } else {
+      const style: any = placeholderStyle;
       return {
         position: 'absolute',
-        ...placeholderStyle
-      }
+        ...style,
+      };
     }
-  }, [isFocus, text, placeholderStyle, labelStyle]);
+  }, [isFocus, text.length, label, focusColor, labelStyle, placeholderStyle]);
 
   return (
     <>
       <View style={[styles.container, style, colorFocus]}>
-        <View
-          style={styles.textInput}>
+        <View style={styles.textInput}>
           {renderLeftIcon?.()}
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
+          <View style={styles.wrapInput}>
+            {label ? (
+              <Text style={[styles.label, styleLable]}>{label}</Text>
+            ) : null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}

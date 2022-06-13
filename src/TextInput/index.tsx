@@ -1,7 +1,8 @@
+/* eslint-disable no-shadow */
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleProp, Text, TextInput, TextStyle, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { InputProps } from './model';
+import type { InputProps } from './model';
 
 const ic_eye = require('./icon/eye.png');
 const ic_uneye = require('./icon/uneye.png');
@@ -15,7 +16,7 @@ const defaultProps = {
   numeric: false,
 };
 
-const TextInputComponent: InputProps = props => {
+const TextInputComponent: InputProps = (props) => {
   const {
     fontFamily,
     style,
@@ -35,7 +36,7 @@ const TextInputComponent: InputProps = props => {
     focusColor,
     onFocus,
     onBlur,
-    onChangeText = (_value: string) => { },
+    onChangeText = (_value: string) => {},
     renderLeftIcon,
     renderRightIcon,
   } = props;
@@ -43,7 +44,7 @@ const TextInputComponent: InputProps = props => {
   const [text, setText] = useState<string>('');
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [textEntry, setTextEntry] = useState<boolean>(
-    secureTextEntry ? true : false,
+    secureTextEntry ? true : false
   );
 
   useEffect(() => {
@@ -54,9 +55,9 @@ const TextInputComponent: InputProps = props => {
         setText(value);
       }
     } else {
-      setText("");
+      setText('');
     }
-  }, [value]);
+  }, [numeric, value]);
 
   const formatNumeric = (num: string) => {
     const values = num.toString().replace(/\D/g, '');
@@ -109,7 +110,6 @@ const TextInputComponent: InputProps = props => {
       } else {
         return null;
       }
-
     }
     return null;
   };
@@ -144,39 +144,39 @@ const TextInputComponent: InputProps = props => {
         borderBottomColor: focusColor,
         borderTopColor: focusColor,
         borderLeftColor: focusColor,
-        borderRightColor: focusColor
+        borderRightColor: focusColor,
       };
     } else {
       return {};
     }
-  }, [isFocus]);
+  }, [focusColor, isFocus]);
 
-  const styleLable: any = useMemo(() => {
-    if (isFocus || text.length > 0 && label) {
+  const styleLable: StyleProp<TextStyle> = useMemo(() => {
+    if (isFocus || (text.length > 0 && label)) {
+      const style: any = labelStyle;
       return {
         top: 5,
         color: isFocus ? focusColor : null,
-        ...labelStyle
+        ...style,
       };
     } else {
+      const style: any = placeholderStyle;
       return {
         position: 'absolute',
-        ...placeholderStyle
-      }
+        ...style,
+      };
     }
-  }, [isFocus, text, placeholderStyle, labelStyle]);
+  }, [isFocus, text.length, label, focusColor, labelStyle, placeholderStyle]);
 
   return (
     <>
       <View style={[styles.container, style, colorFocus]}>
-        <View
-          style={[
-            styles.textInput,
-          ]
-          }>
+        <View style={[styles.textInput]}>
           {renderLeftIcon?.()}
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
+          <View style={styles.wrapInput}>
+            {label ? (
+              <Text style={[styles.label, styleLable]}>{label}</Text>
+            ) : null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}

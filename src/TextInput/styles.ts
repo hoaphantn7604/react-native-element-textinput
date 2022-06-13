@@ -1,20 +1,24 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: { 
+  container: {
     alignItems: 'center',
-    height: 60
+    height: 60,
+  },
+  wrapInput: {
+    flex: 1,
+    justifyContent: 'center',
   },
   textInput: {
-    flex:1,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
   },
   input: {
     fontSize: 16,
     paddingHorizontal: 0,
-    flex:1,
-    color: 'black'
+    flex: 1,
+    color: 'black',
   },
   label: {
     fontSize: 16,
@@ -40,11 +44,11 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 8,
     marginTop: 12,
     marginRight: 8,
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   selectedTextItem: {
     marginLeft: 5,
     color: 'gray',
-    fontSize: 16
+    fontSize: 16,
   },
 });

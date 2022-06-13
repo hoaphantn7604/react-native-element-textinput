@@ -1,11 +1,11 @@
-import React from 'react';
-import {
+import type React from 'react';
+import type {
   NativeSyntheticEvent,
   StyleProp,
   TextInputFocusEventData,
   TextInputProps,
   TextStyle,
-  ViewStyle
+  ViewStyle,
 } from 'react-native';
 
 interface IProps extends TextInputProps {
@@ -23,8 +23,11 @@ interface IProps extends TextInputProps {
   data?: string[];
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
-  onChangeValue?: (value: string[]) => void
-  renderTagsItem?: (item: any, onRemove?: () => void) => React.ReactNode | null | undefined;
+  onChangeValue?: (value: string[]) => void;
+  renderTagsItem?: (
+    item: any,
+    onRemove?: () => void
+  ) => JSX.Element | null | undefined;
 }
 
 export type TagsInputProps = React.FC<IProps>;

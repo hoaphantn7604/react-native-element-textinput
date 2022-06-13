@@ -1,7 +1,8 @@
+/* eslint-disable no-shadow */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleProp, Text, TextInput, TextStyle, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
-import { HashtagProps } from './model';
+import type { HashtagProps } from './model';
 
 const ic_close = require('./icon/close.png');
 
@@ -11,7 +12,7 @@ const defaultProps = {
   showIcon: true,
 };
 
-const HashtagInputComponent: HashtagProps = props => {
+const HashtagInputComponent: HashtagProps = (props) => {
   const {
     fontFamily,
     style,
@@ -31,11 +32,11 @@ const HashtagInputComponent: HashtagProps = props => {
     hashtagTextStyle,
     onFocus,
     onBlur,
-    onChangeText = (_value: string) => { },
+    onChangeText = (_value: string) => {},
     renderLeftIcon,
     renderRightIcon,
-    onChangeValue = (_value: string[]) => { },
-    renderHashtagItem
+    onChangeValue = (_value: string[]) => {},
+    renderHashtagItem,
   } = props;
 
   const [text, setText] = useState<string>('');
@@ -65,7 +66,7 @@ const HashtagInputComponent: HashtagProps = props => {
     return null;
   };
 
-  const font = () => {
+  const font = useCallback(() => {
     if (fontFamily) {
       return {
         fontFamily: fontFamily,
@@ -73,7 +74,7 @@ const HashtagInputComponent: HashtagProps = props => {
     } else {
       return {};
     }
-  };
+  }, [fontFamily]);
 
   const onFocusCustom = (e: any) => {
     setIsFocus(true);
@@ -89,16 +90,19 @@ const HashtagInputComponent: HashtagProps = props => {
     }
   };
 
-  const onRemoveItem = (index: number) => {
-    if (hashtag) {
-      if (props.editable === undefined || props.editable) {
-        var array = [...hashtag];
-        array.splice(index, 1);
-        setHashtag(array);
-        onChangeValue(array);
+  const onRemoveItem = useCallback(
+    (index: number) => {
+      if (hashtag) {
+        if (props.editable === undefined || props.editable) {
+          var array = [...hashtag];
+          array.splice(index, 1);
+          setHashtag(array);
+          onChangeValue(array);
+        }
       }
-    }
-  };
+    },
+    [hashtag, onChangeValue, props.editable]
+  );
 
   useEffect(() => {
     if (data) {
@@ -119,29 +123,50 @@ const HashtagInputComponent: HashtagProps = props => {
   const _renderItemSelected = useCallback(() => {
     if (hashtag && hashtag.length > 0) {
       return (
-        <View style={{ flexDirection: 'row', flexWrap: 'wrap' }}>
+        <View style={styles.wrapSelectItem}>
           {hashtag.map((e, index) => {
             if (renderHashtagItem) {
-              return <TouchableOpacity
-                key={index}
-              >
-                {renderHashtagItem(e, () => { onRemoveItem(index) })}
-              </TouchableOpacity>
+              return (
+                <TouchableOpacity key={index}>
+                  {renderHashtagItem(e, () => {
+                    onRemoveItem(index);
+                  })}
+                </TouchableOpacity>
+              );
             }
             return (
               <TouchableOpacity
                 key={index}
                 style={[styles.selectedItem, hashtagStyle]}
-                onPress={() => { onRemoveItem(index) }}
+                onPress={() => {
+                  onRemoveItem(index);
+                }}
               >
-                <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>{e}</Text>
-                <Text style={[styles.selectedTextItem, hashtagTextStyle, font()]}>ⓧ</Text>
+                <Text
+                  style={[styles.selectedTextItem, hashtagTextStyle, font()]}
+                >
+                  {e}
+                </Text>
+                <Text
+                  style={[styles.selectedTextItem, hashtagTextStyle, font()]}
+                >
+                  ⓧ
+                </Text>
               </TouchableOpacity>
-            )
+            );
           })}
-        </View>)
+        </View>
+      );
     }
-  }, [hashtag]);
+    return null;
+  }, [
+    font,
+    hashtag,
+    hashtagStyle,
+    hashtagTextStyle,
+    onRemoveItem,
+    renderHashtagItem,
+  ]);
 
   const colorFocus = useMemo(() => {
     if (isFocus && focusColor) {
@@ -149,36 +174,39 @@ const HashtagInputComponent: HashtagProps = props => {
         borderBottomColor: focusColor,
         borderTopColor: focusColor,
         borderLeftColor: focusColor,
-        borderRightColor: focusColor
+        borderRightColor: focusColor,
       };
     } else {
       return {};
     }
-  }, [isFocus]);
+  }, [focusColor, isFocus]);
 
-  const styleLable: any = useMemo(() => {
-    if (isFocus || text.length > 0 && label) {
+  const styleLable: StyleProp<TextStyle> = useMemo(() => {
+    if (isFocus || (text.length > 0 && label)) {
+      const style: any = labelStyle;
       return {
         top: 5,
         color: isFocus ? focusColor : null,
-        ...labelStyle
+        ...style,
       };
     } else {
+      const style: any = placeholderStyle;
       return {
         position: 'absolute',
-        ...placeholderStyle
-      }
+        ...style,
+      };
     }
-  }, [isFocus, text, placeholderStyle, labelStyle]);
+  }, [isFocus, text.length, label, focusColor, labelStyle, placeholderStyle]);
 
   return (
     <>
       <View style={[styles.container, style, colorFocus]}>
-        <View
-          style={styles.textInput}>
+        <View style={styles.textInput}>
           {renderLeftIcon?.()}
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            {label ? <Text style={[styles.label, styleLable]}>{label}</Text> : null}
+          <View style={styles.wrapInput}>
+            {label ? (
+              <Text style={[styles.label, styleLable]}>{label}</Text>
+            ) : null}
             <TextInput
               {...props}
               style={[styles.input, inputStyle, font()]}

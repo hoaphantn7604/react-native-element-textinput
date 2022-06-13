@@ -3,7 +3,11 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    height: 60
+    height: 60,
+  },
+  wrapInput: {
+    flex: 1,
+    justifyContent: 'center',
   },
   textInput: {
     flex: 1,
@@ -14,7 +18,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     paddingHorizontal: 0,
     flex: 1,
-    color: 'black'
+    color: 'black',
   },
   label: {
     fontSize: 16,
@@ -56,5 +60,4 @@ export const styles = StyleSheet.create({
     flex: 1,
     fontSize: 16,
   },
-
 });
