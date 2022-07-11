@@ -1,6 +1,14 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useMemo, useState } from 'react';
-import { Image, StyleProp, Text, TextInput, TextStyle, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  StyleProp,
+  Text,
+  TextInput,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { styles } from './styles';
 import type { InputProps } from './model';
 
@@ -178,9 +186,9 @@ const TextInputComponent: InputProps = (props) => {
               <Text style={[styles.label, styleLable]}>{label}</Text>
             ) : null}
             <TextInput
+              secureTextEntry={textEntry}
               {...props}
               style={[styles.input, inputStyle, font()]}
-              secureTextEntry={textEntry}
               value={text}
               placeholder={isFocus || !label ? placeholder : ''}
               placeholderTextColor={placeholderTextColor}

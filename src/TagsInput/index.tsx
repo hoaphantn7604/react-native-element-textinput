@@ -1,6 +1,13 @@
 /* eslint-disable no-shadow */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { StyleProp, Text, TextInput, TextStyle, TouchableOpacity, View } from 'react-native';
+import {
+  StyleProp,
+  Text,
+  TextInput,
+  TextStyle,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { styles } from './styles';
 import type { TagsInputProps } from './model';
 
