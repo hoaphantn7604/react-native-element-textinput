@@ -22,6 +22,7 @@ interface Props extends TextInputProps {
   showIcon?: boolean;
   numeric?: boolean;
   focusColor?: string;
+  selectionColor?: string;
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   renderRightIcon?: () => JSX.Element | null | undefined;
