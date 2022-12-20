@@ -42,6 +42,7 @@ const TextInputComponent: InputProps = (props) => {
     numeric,
     textError,
     focusColor,
+    selectionColor,
     onFocus,
     onBlur,
     onChangeText = (_value: string) => {},
@@ -176,6 +177,18 @@ const TextInputComponent: InputProps = (props) => {
     }
   }, [isFocus, text.length, label, focusColor, labelStyle, placeholderStyle]);
 
+  const stylePlaceholder: StyleProp<TextStyle> = useMemo(() => {
+    if (!isFocus || (text.length <=0 && placeholder)) {
+      const style: any = placeholderStyle;
+      return {
+        position: 'absolute',
+        ...style,
+      };
+    } else {
+      return;
+    }
+  }, [isFocus, text.length, placeholder]);
+
   return (
     <>
       <View style={[styles.container, style, colorFocus]}>
@@ -188,10 +201,11 @@ const TextInputComponent: InputProps = (props) => {
             <TextInput
               secureTextEntry={textEntry}
               {...props}
-              style={[styles.input, inputStyle, font()]}
+              style={[styles.input, inputStyle, stylePlaceholder, font()]}
               value={text}
               placeholder={isFocus || !label ? placeholder : ''}
               placeholderTextColor={placeholderTextColor}
+              selectionColor={selectionColor ? selectionColor : '#ffffff'}
               onChangeText={onChange}
               onFocus={onFocusCustom}
               onBlur={onBlurCustom}
