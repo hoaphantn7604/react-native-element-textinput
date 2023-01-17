@@ -35,11 +35,10 @@ const TextInputComponent: InputProps = (props) => {
     textErrorStyle,
     value,
     label,
-    secureTextEntry,
     placeholderTextColor = '#000',
     placeholder = '',
     showIcon,
-    numeric,
+    mode = 'default',
     textError,
     focusColor,
     onFocus,
@@ -52,12 +51,12 @@ const TextInputComponent: InputProps = (props) => {
   const [text, setText] = useState<string>('');
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [textEntry, setTextEntry] = useState<boolean>(
-    secureTextEntry ? true : false
+    mode === 'password' ? true : false
   );
 
   useEffect(() => {
     if (value) {
-      if (numeric) {
+      if (mode === 'numeric') {
         setText(formatNumeric(value));
       } else {
         setText(value);
@@ -65,7 +64,7 @@ const TextInputComponent: InputProps = (props) => {
     } else {
       setText('');
     }
-  }, [numeric, value]);
+  }, [mode, value]);
 
   const formatNumeric = (num: string) => {
     const values = num.toString().replace(/\D/g, '');
@@ -80,7 +79,7 @@ const TextInputComponent: InputProps = (props) => {
   };
 
   const onChange = (text: string) => {
-    if (numeric) {
+    if (mode === 'numeric') {
       setText(formatNumeric(text));
       onChangeText(reConvertNumeric(text));
     } else {
@@ -99,7 +98,7 @@ const TextInputComponent: InputProps = (props) => {
         return renderRightIcon();
       }
       if (text.length > 0) {
-        if (secureTextEntry) {
+        if (mode === 'password') {
           return (
             <TouchableOpacity onPress={onChangeTextEntry}>
               <Image
@@ -187,7 +186,7 @@ const TextInputComponent: InputProps = (props) => {
             ) : null}
             <TextInput
               secureTextEntry={textEntry}
-              {...props}
+              {...props}    
               style={[styles.input, inputStyle, font()]}
               value={text}
               placeholder={isFocus || !label ? placeholder : ''}

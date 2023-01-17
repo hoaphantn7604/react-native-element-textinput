@@ -8,6 +8,7 @@ const TextInputComponent = () => {
   return (
     <View style={styles.container}>
       <TextInput
+        mode="password"
         value={value}
         style={styles.input}
         inputStyle={styles.inputStyle}
@@ -17,7 +18,6 @@ const TextInputComponent = () => {
         label="Password"
         placeholder="Placeholder"
         placeholderTextColor="gray"
-        secureTextEntry
         onChangeText={(text) => {
           setValue(text);
         }}

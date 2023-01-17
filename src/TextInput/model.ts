@@ -10,6 +10,7 @@ import type {
 } from 'react-native';
 
 interface Props extends TextInputProps {
+  mode?: 'default' | 'numeric' | 'password'
   fontFamily?: string;
   style?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
@@ -20,7 +21,6 @@ interface Props extends TextInputProps {
   textError?: string;
   label?: string;
   showIcon?: boolean;
-  numeric?: boolean;
   focusColor?: string;
   onFocus?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   onBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
