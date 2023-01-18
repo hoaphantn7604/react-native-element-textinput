@@ -237,6 +237,7 @@ or
     return (
       <View style={styles.container}>
         <TextInput
+          mode="password"
           value={value}
           style={styles.input}
           inputStyle={styles.inputStyle}
@@ -246,7 +247,6 @@ or
           label="Password"
           placeholder="Placeholder"
           placeholderTextColor="gray"
-          secureTextEntry
           onChangeText={text => {
             setValue(text);
           }}
