@@ -24,7 +24,7 @@ or
 ### Demo
 ![](https://github.com/hoaphantn7604/file-upload/blob/master/document/textinput/demo.png)
 
-#### TextInput extends RNTextInputProps
+#### TextInput extends TextInputProps
 | Props              | Params               | isRequire | default                            |
 | ------------------ | -------------------- | --------- | ---------------------------------- |
 | mode     | default or numeric or password |No         | Switch mode textinput              |
@@ -54,7 +54,6 @@ or
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
 | showIcon           | Boolean              | No        | Show or hide icon clear text       |
 | iconStyle          | ImageStyle           | No        | Styling for icon clear text        |
-| numeric            | Boolean              | No        | Input value is numeric             |
 | focusColor         | String               | No        | Color when focus to textinput      |
 | fontFamily         | String               | No        | Customize font style               |
 | renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
@@ -77,7 +76,6 @@ or
 | textErrorStyle     | TextStyle            | No        | Styling for text error             |
 | showIcon           | Boolean              | No        | Show or hide icon clear text       |
 | iconStyle          | ImageStyle           | No        | Styling for icon clear text        |
-| numeric            | Boolean              | No        | Input value is numeric             |
 | focusColor         | String               | No        | Color when focus to textinput      |
 | fontFamily         | String               | No        | Customize font style               |
 | renderLeftIcon     | () => JSX.Element    | No        | Customize left icon for textinput  |
@@ -104,7 +102,6 @@ or
 | textErrorStyle     | TextStyle                    | No        | Styling for text error             |
 | showIcon           | Boolean                      | No        | Show or hide icon clear text       |
 | iconStyle          | ImageStyle                   | No        | Styling for icon clear text        |
-| numeric            | Boolean                      | No        | Input value is numeric             |
 | focusColor         | String                       | No        | Color when focus to textinput      |
 | fontFamily         | String                       | No        | Customize font style               |
 | renderLeftIcon     | () => JSX.Element            | No        | Customize left icon for textinput  |
