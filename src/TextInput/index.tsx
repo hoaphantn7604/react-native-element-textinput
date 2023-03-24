@@ -186,7 +186,7 @@ const TextInputComponent: InputProps = (props) => {
             ) : null}
             <TextInput
               secureTextEntry={textEntry}
-              {...props}    
+              {...props}
               style={[styles.input, inputStyle, font()]}
               value={text}
               placeholder={isFocus || !label ? placeholder : ''}
@@ -194,6 +194,7 @@ const TextInputComponent: InputProps = (props) => {
               onChangeText={onChange}
               onFocus={onFocusCustom}
               onBlur={onBlurCustom}
+              inputMode={mode === 'numeric' ? 'numeric' : 'text'}
             />
           </View>
           {_renderRightIcon()}
